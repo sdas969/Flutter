@@ -1,0 +1,4 @@
+#Thu May 21 12:07:31 IST 2020
+base.0=C\:\\Users\\HP\\Downloads\\Projects\\magic_8_ball_flutter\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
