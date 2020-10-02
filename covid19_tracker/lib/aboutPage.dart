@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/entypo_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'corona_icons.dart';
-import 'package:mbi/mbi.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/octicons_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -49,11 +51,21 @@ class _AboutPageState extends State<AboutPage> {
               shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(20))),
-              expandedHeight: 100,
+              expandedHeight: 200,
               centerTitle: true,
               flexibleSpace: FlexibleSpaceBar(
+                background: Icon(
+                  Entypo.info,
+                  size: 80,
+                  color: Colors.blueAccent.withOpacity(0.6),
+                ),
+                centerTitle: true,
                 title: Text('About'),
-                stretchModes: [StretchMode.fadeTitle],
+                stretchModes: [
+                  StretchMode.zoomBackground,
+                  StretchMode.blurBackground,
+                  StretchMode.fadeTitle,
+                ],
               ),
               stretch: true,
             ),
@@ -67,10 +79,9 @@ class _AboutPageState extends State<AboutPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
-                          Corona.virus,
-                          color: Colors.pink,
-                          size: 173,
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Image.asset('assets/Corona.png'),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 12),
@@ -88,19 +99,19 @@ class _AboutPageState extends State<AboutPage> {
                         ),
                         RaisedButton.icon(
                           color: Colors.green,
-                          icon: Icon(Icons.cloud_download),
+                          icon: Icon(Octicons.repo),
                           onPressed: _launchURLrepo,
                           label: Text('Repository'),
                         ),
                         RaisedButton.icon(
                           color: Colors.black,
-                          icon: Icon(BrandsIcons.github1),
+                          icon: Icon(FontAwesome5.github),
                           onPressed: _launchURLgit,
                           label: Text('@sdas969'),
                         ),
                         RaisedButton.icon(
                           color: Colors.blue,
-                          icon: Icon(LineconsIcons.data),
+                          icon: Icon(FontAwesome.database),
                           onPressed: _launchURLapi,
                           label: Text('disease.sh'),
                         )

@@ -88,17 +88,16 @@ class _CitySelectState extends State<CitySelect> {
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(20))),
                 stretch: true,
-                expandedHeight: 100,
+                expandedHeight: 200,
                 flexibleSpace: FlexibleSpaceBar(
-                  stretchModes: [StretchMode.fadeTitle],
-                  title: Hero(
-                      tag: 'search',
-                      child: Icon(
-                        Icons.search,
-                        size: 40,
-                        color: Colors.white,
-                        semanticLabel: 'Search',
-                      )),
+                  background: Hero(
+                    tag: 'search',
+                    child: Icon(Icons.search, size: 100, color: Colors.white),
+                  ),
+                  stretchModes: [
+                    StretchMode.zoomBackground,
+                    StretchMode.blurBackground,
+                  ],
                   centerTitle: true,
                 ),
               ),

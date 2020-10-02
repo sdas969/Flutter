@@ -7,7 +7,7 @@ import 'citySelect.dart';
 import 'aboutPage.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'corona_icons.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -242,7 +242,7 @@ class _HomePageState extends State<HomePage> {
         length: 2,
         child: Scaffold(
           bottomNavigationBar: TabBar(tabs: [
-            Tab(icon: Icon(Corona.virus)),
+            Tab(icon: Icon(FontAwesome5.virus)),
             Tab(
                 icon: Icon(
               Icons.info,
@@ -290,11 +290,26 @@ class _HomePageState extends State<HomePage> {
                                           countrystate[0], countrystate[1]);
                                 })
                           ],
-                          expandedHeight: 100,
+                          expandedHeight: 200,
                           centerTitle: true,
                           flexibleSpace: FlexibleSpaceBar(
+                            background: Padding(
+                              padding: const EdgeInsets.all(50),
+                              child: Image.asset(
+                                'assets/Corona.png',
+                                scale: 0.8,
+                              ),
+                            ),
+                            // Icon(FontAwesome5.virus,
+                            //     size: 100,
+                            //     color: Colors.red.shade900.withOpacity(0.8)),
+                            centerTitle: true,
                             title: Text('Corona Tracker'),
-                            stretchModes: [StretchMode.fadeTitle],
+                            stretchModes: [
+                              StretchMode.zoomBackground,
+                              StretchMode.blurBackground,
+                              StretchMode.fadeTitle,
+                            ],
                           ),
                           stretch: true,
                         ),
