@@ -11,6 +11,16 @@ class AboutPage extends StatefulWidget {
   _AboutPageState createState() => _AboutPageState();
 }
 
+_launchURLapk() async {
+  const url =
+      'https://github.com/sdas969/Flutter/raw/master/covid19_tracker/app-armeabi-v7a-release.apk';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 _launchURLrepo() async {
   const url = 'https://github.com/sdas969/Flutter/tree/master/covid19_tracker';
   if (await canLaunch(url)) {
@@ -110,33 +120,55 @@ class _AboutPageState extends State<AboutPage> {
                             style: GoogleFonts.lato(),
                           ),
                         ),
-                        RaisedButton.icon(
-                          color: Colors.green,
-                          icon: Icon(Octicons.repo),
-                          onPressed: _launchURLrepo,
-                          label: Text(
-                            'Repository',
-                            style: GoogleFonts.lato(),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            RaisedButton.icon(
+                              color: Colors.blue[900],
+                              icon: Icon(
+                                Icons.android,
+                                color: Colors.greenAccent,
+                              ),
+                              onPressed: _launchURLapk,
+                              label: Text(
+                                'Download',
+                                style: GoogleFonts.lato(),
+                              ),
+                            ),
+                            RaisedButton.icon(
+                              color: Colors.green,
+                              icon: Icon(Octicons.repo),
+                              onPressed: _launchURLrepo,
+                              label: Text(
+                                'Repository',
+                                style: GoogleFonts.lato(),
+                              ),
+                            ),
+                          ],
                         ),
-                        RaisedButton.icon(
-                          color: Colors.black,
-                          icon: Icon(FontAwesome5.github),
-                          onPressed: _launchURLgit,
-                          label: Text(
-                            '@sdas969',
-                            style: GoogleFonts.lato(),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            RaisedButton.icon(
+                              color: Colors.black,
+                              icon: Icon(FontAwesome5.github),
+                              onPressed: _launchURLgit,
+                              label: Text(
+                                '@sdas969',
+                                style: GoogleFonts.lato(),
+                              ),
+                            ),
+                            RaisedButton.icon(
+                              color: Colors.blue,
+                              icon: Icon(FontAwesome.database),
+                              onPressed: _launchURLapi,
+                              label: Text(
+                                'disease.sh',
+                                style: GoogleFonts.lato(),
+                              ),
+                            )
+                          ],
                         ),
-                        RaisedButton.icon(
-                          color: Colors.blue,
-                          icon: Icon(FontAwesome.database),
-                          onPressed: _launchURLapi,
-                          label: Text(
-                            'disease.sh',
-                            style: GoogleFonts.lato(),
-                          ),
-                        )
                       ],
                     ),
                   ),
