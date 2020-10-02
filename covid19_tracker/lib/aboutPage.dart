@@ -9,6 +9,15 @@ class AboutPage extends StatefulWidget {
   _AboutPageState createState() => _AboutPageState();
 }
 
+_launchURLrepo() async {
+  const url = 'https://github.com/sdas969/Flutter/tree/master/covid19_tracker';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 _launchURLgit() async {
   const url = 'https://github.com/sdas969';
   if (await canLaunch(url)) {
@@ -76,6 +85,12 @@ class _AboutPageState extends State<AboutPage> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: Text('Smarajit Das'),
+                        ),
+                        RaisedButton.icon(
+                          color: Colors.green,
+                          icon: Icon(Icons.cloud_download),
+                          onPressed: _launchURLrepo,
+                          label: Text('Repository'),
                         ),
                         RaisedButton.icon(
                           color: Colors.black,
