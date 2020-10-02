@@ -29,4 +29,6 @@ flutter:
     - family: Corona
       fonts:
         - asset: assets/fonts/Corona.ttf
+  assets:
+    - assets/Corona.png
 

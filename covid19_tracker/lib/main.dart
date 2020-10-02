@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
+        image: Image.asset('assets/Corona.png'),
         seconds: 3,
         navigateAfterSeconds: HomePage(),
         title: new Text(
