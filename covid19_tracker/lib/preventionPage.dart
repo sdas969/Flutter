@@ -84,8 +84,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'Masks can help prevent people who are asymptomatic or undiagnosed from transmitting SARS-CoV-2 when they breathe, talk, sneeze, or cough. This, in turn, slows the transmission of the virus.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
@@ -120,8 +119,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'Use warm water and soap and rub your hands for at least 20 seconds. Work the lather to your wrists, between your fingers, and under your fingernails. You can also use an antibacterial and antiviral soap.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
@@ -156,8 +154,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'Use a tissue or sneeze into your elbow to keep your hands as clean as possible. Wash your hands carefully after you sneeze or cough, regardless.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
@@ -192,8 +189,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'Avoid touching any part of your face or head, including your mouth, nose, and eyes. Also avoid biting your fingernails. This can give SARS-CoV-2 a chance to go from your hands into your body.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
@@ -228,8 +224,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'If you must go out for necessities, keep a distance of 6 feet (2 m) from other people. You can transmit the virus by speaking to someone in close contact to you.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
@@ -264,8 +259,7 @@ class _PreventionPageState extends State<PreventionPage> {
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
                                       'Use alcohol-based disinfectants to clean hard surfaces in your home. Clean your phone, laptop, and anything else you use regularly several times a day. Disinfect areas after you bring groceries or packages into your home.',
-                                      style: GoogleFonts.lato(
-                                          textStyle: TextStyle(fontSize: 15))),
+                                      style: GoogleFonts.lato()),
                                 )
                               ],
                             ),
