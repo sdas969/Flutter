@@ -56,11 +56,16 @@ class _AboutPageState extends State<AboutPage> {
               flexibleSpace: FlexibleSpaceBar(
                 background: Icon(
                   Entypo.info,
-                  size: 80,
+                  size: 160,
                   color: Colors.blueAccent.withOpacity(0.6),
                 ),
                 centerTitle: true,
-                title: Text('About'),
+                title: Text(
+                  'About',
+                  style: GoogleFonts.lato(
+                      textStyle:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.w900)),
+                ),
                 stretchModes: [
                   StretchMode.zoomBackground,
                   StretchMode.blurBackground,
@@ -87,33 +92,50 @@ class _AboutPageState extends State<AboutPage> {
                           padding: const EdgeInsets.only(top: 12),
                           child: Text('Corona Tracker',
                               style: GoogleFonts.lato(
-                                  textStyle: TextStyle(fontSize: 40))),
+                                  textStyle: TextStyle(
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w900))),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
-                          child: Text('Made By'),
+                          child: Text(
+                            'Made By',
+                            style: GoogleFonts.lato(),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8),
-                          child: Text('Smarajit Das'),
+                          child: Text(
+                            'Smarajit Das',
+                            style: GoogleFonts.lato(),
+                          ),
                         ),
                         RaisedButton.icon(
                           color: Colors.green,
                           icon: Icon(Octicons.repo),
                           onPressed: _launchURLrepo,
-                          label: Text('Repository'),
+                          label: Text(
+                            'Repository',
+                            style: GoogleFonts.lato(),
+                          ),
                         ),
                         RaisedButton.icon(
                           color: Colors.black,
                           icon: Icon(FontAwesome5.github),
                           onPressed: _launchURLgit,
-                          label: Text('@sdas969'),
+                          label: Text(
+                            '@sdas969',
+                            style: GoogleFonts.lato(),
+                          ),
                         ),
                         RaisedButton.icon(
                           color: Colors.blue,
                           icon: Icon(FontAwesome.database),
                           onPressed: _launchURLapi,
-                          label: Text('disease.sh'),
+                          label: Text(
+                            'disease.sh',
+                            style: GoogleFonts.lato(),
+                          ),
                         )
                       ],
                     ),

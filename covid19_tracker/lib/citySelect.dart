@@ -40,7 +40,10 @@ class _CitySelectState extends State<CitySelect> {
         placesall1.insert(
             index,
             ListTile(
-              title: Text(jsonResall[i]['country']),
+              title: Text(
+                jsonResall[i]['country'],
+                style: GoogleFonts.lato(),
+              ),
               onTap: () {
                 Navigator.pop(context, [jsonResall[i]['country'], null]);
               },
@@ -48,8 +51,12 @@ class _CitySelectState extends State<CitySelect> {
         index++;
       } else {
         placesall1.add(ListTile(
-          title: Text(jsonResall[i]['province']),
-          trailing: Text(jsonResall[i]['country'].toString().toUpperCase()),
+          title: Text(
+            jsonResall[i]['province'],
+            style: GoogleFonts.lato(),
+          ),
+          trailing: Text(jsonResall[i]['country'].toString().toUpperCase(),
+              style: GoogleFonts.lato()),
           onTap: () {
             Navigator.pop(
                 context, [jsonResall[i]['country'], jsonResall[i]['province']]);

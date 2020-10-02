@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -8,10 +9,12 @@ import 'aboutPage.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'preventionPage.dart';
 
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
+    theme: ThemeData.dark(),
   ));
 }
 
@@ -30,7 +33,10 @@ class _MyAppState extends State<MyApp> {
         title: new Text(
           'Corona Tracker',
           style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 30, color: Colors.white70)),
+              textStyle: TextStyle(
+                  fontSize: 30,
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w900)),
         ),
         backgroundColor: ThemeData.dark().primaryColor,
         styleTextUnderTheLoader: TextStyle(),
@@ -136,7 +142,7 @@ class _HomePageState extends State<HomePage> {
     });
     var temp = await http.get('https://disease.sh/v3/covid-19/jhucsse');
     var temphist = await http.get(
-        'https://disease.sh/v3/covid-19/historical/$countrytemp?lastdays=14');
+        'https://disease.sh/v3/covid-19/historical/${countrytemp.replaceAll('*', '')}?lastdays=14');
     if (temp.statusCode == 200) {
       var jsonRes = convert.jsonDecode(temp.body);
       var jsonResHist = convert.jsonDecode(temphist.body);
@@ -239,14 +245,12 @@ class _HomePageState extends State<HomePage> {
         Theme.of(context).textTheme,
       ).apply(bodyColor: Colors.white, displayColor: Colors.white)),
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           bottomNavigationBar: TabBar(tabs: [
             Tab(icon: Icon(FontAwesome5.virus)),
-            Tab(
-                icon: Icon(
-              Icons.info,
-            ))
+            Tab(icon: Icon(RpgAwesome.health)),
+            Tab(icon: Icon(Icons.info))
           ]),
           body: TabBarView(
             children: [
@@ -294,17 +298,19 @@ class _HomePageState extends State<HomePage> {
                           centerTitle: true,
                           flexibleSpace: FlexibleSpaceBar(
                             background: Padding(
-                              padding: const EdgeInsets.all(50),
+                              padding: const EdgeInsets.all(20),
                               child: Image.asset(
                                 'assets/Corona.png',
-                                scale: 0.8,
                               ),
                             ),
-                            // Icon(FontAwesome5.virus,
-                            //     size: 100,
-                            //     color: Colors.red.shade900.withOpacity(0.8)),
                             centerTitle: true,
-                            title: Text('Corona Tracker'),
+                            title: Text(
+                              'Corona Tracker',
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w900)),
+                            ),
                             stretchModes: [
                               StretchMode.zoomBackground,
                               StretchMode.blurBackground,
@@ -318,7 +324,9 @@ class _HomePageState extends State<HomePage> {
                           [
                             Padding(
                               padding: EdgeInsets.only(top: 20),
-                              child: Center(child: Text('Updated on $updated')),
+                              child: Center(
+                                  child: Text('Updated on $updated',
+                                      style: GoogleFonts.lato())),
                             ),
                             Padding(
                               padding: EdgeInsets.fromLTRB(8, 20, 0, 0),
@@ -336,7 +344,10 @@ class _HomePageState extends State<HomePage> {
                                         style: GoogleFonts.lato(
                                             textStyle: TextStyle(fontSize: 30)),
                                       ),
-                                      subtitle: Text(selcountry),
+                                      subtitle: Text(
+                                        selcountry,
+                                        style: GoogleFonts.lato(),
+                                      ),
                                     ),
                             ),
                             Row(
@@ -626,7 +637,7 @@ class _HomePageState extends State<HomePage> {
                                               leftTitles: SideTitles(
                                                 interval: maxY == 0
                                                     ? double.infinity
-                                                    : (maxY * 1.1 / 10) - 1,
+                                                    : (maxY * 1.1 / 10),
                                                 reservedSize: 15,
                                                 showTitles: true,
                                                 getTitles: (value) {
@@ -744,6 +755,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              PreventionPage(),
               AboutPage()
             ],
           ),
