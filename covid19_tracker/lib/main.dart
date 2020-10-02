@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         title: new Text(
           'Corona Tracker',
           style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 30, color: Colors.white54)),
+              textStyle: TextStyle(fontSize: 30, color: Colors.white70)),
         ),
         backgroundColor: ThemeData.dark().primaryColor,
         styleTextUnderTheLoader: TextStyle(),
