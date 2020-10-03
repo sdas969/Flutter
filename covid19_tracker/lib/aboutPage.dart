@@ -17,7 +17,6 @@ _launchURLapk() async {
   if (await canLaunch(url)) {
     await launch(
       url,
-      enableJavaScript: true,
     );
   } else {
     throw 'Could not launch $url';
@@ -29,7 +28,6 @@ _launchURLrepo() async {
   if (await canLaunch(url)) {
     await launch(
       url,
-      enableJavaScript: true,
     );
   } else {
     throw 'Could not launch $url';
@@ -41,7 +39,6 @@ _launchURLgit() async {
   if (await canLaunch(url)) {
     await launch(
       url,
-      enableJavaScript: true,
     );
   } else {
     throw 'Could not launch $url';
@@ -53,7 +50,6 @@ _launchURLapi() async {
   if (await canLaunch(url)) {
     await launch(
       url,
-      enableJavaScript: true,
     );
   } else {
     throw 'Could not launch $url';
