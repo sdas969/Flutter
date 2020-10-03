@@ -74,8 +74,6 @@ class _CitySelectState extends State<CitySelect> {
               physics: BouncingScrollPhysics(),
               slivers: [
                 SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  primary: true,
                   floating: true,
                   pinned: true,
                   bottom:
