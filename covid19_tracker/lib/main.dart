@@ -247,7 +247,8 @@ class _HomePageState extends State<HomePage> {
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
-          bottomNavigationBar: TabBar(tabs: [
+          bottomNavigationBar:
+              TabBar(indicatorSize: TabBarIndicatorSize.label, tabs: [
             Tab(icon: Icon(FontAwesome5.virus)),
             Tab(icon: Icon(RpgAwesome.health)),
             Tab(icon: Icon(Icons.info))

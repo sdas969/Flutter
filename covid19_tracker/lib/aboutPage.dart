@@ -13,9 +13,12 @@ class AboutPage extends StatefulWidget {
 
 _launchURLapk() async {
   const url =
-      'https://github.com/sdas969/Flutter/raw/master/covid19_tracker/app-armeabi-v7a-release.apk';
+      'https://github.com/sdas969/Flutter/blob/master/covid19_tracker/app-armeabi-v7a-release.apk';
   if (await canLaunch(url)) {
-    await launch(url);
+    await launch(
+      url,
+      enableJavaScript: true,
+    );
   } else {
     throw 'Could not launch $url';
   }
@@ -24,7 +27,10 @@ _launchURLapk() async {
 _launchURLrepo() async {
   const url = 'https://github.com/sdas969/Flutter/tree/master/covid19_tracker';
   if (await canLaunch(url)) {
-    await launch(url);
+    await launch(
+      url,
+      enableJavaScript: true,
+    );
   } else {
     throw 'Could not launch $url';
   }
@@ -33,7 +39,10 @@ _launchURLrepo() async {
 _launchURLgit() async {
   const url = 'https://github.com/sdas969';
   if (await canLaunch(url)) {
-    await launch(url);
+    await launch(
+      url,
+      enableJavaScript: true,
+    );
   } else {
     throw 'Could not launch $url';
   }
@@ -42,7 +51,10 @@ _launchURLgit() async {
 _launchURLapi() async {
   const url = 'https://disease.sh/';
   if (await canLaunch(url)) {
-    await launch(url);
+    await launch(
+      url,
+      enableJavaScript: true,
+    );
   } else {
     throw 'Could not launch $url';
   }

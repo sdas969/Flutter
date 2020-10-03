@@ -47,7 +47,7 @@ class _PreventionPageState extends State<PreventionPage> {
                 delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 20, 8, 20),
+                  padding: const EdgeInsets.fromLTRB(11, 20, 11, 20),
                   child: Container(
                       child: Text(
                     'The best way to prevent the coronavirus is to not get it in the first place. There’s no vaccine yet for COVID-19, the disease that the virus causes. As communities across the country begin to reopen for business, you can lower your chances of getting or spreading the virus by taking these steps:',

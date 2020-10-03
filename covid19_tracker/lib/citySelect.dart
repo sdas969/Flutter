@@ -10,47 +10,27 @@ class CitySelect extends StatefulWidget {
 }
 
 class _CitySelectState extends State<CitySelect> {
-  List<ListTile> placesall = [];
+  List<ListTile> countries = [];
+  List<ListTile> states = [];
   bool show = true;
   Future<void> places() async {
-    List<ListTile> placesall1 = [
-      ListTile(
-        title: Text(
-          'Countries',
-          style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-        ),
-      ),
-      ListTile(
-        title: Divider(),
-      ),
-      ListTile(
-        title: Text(
-          'States',
-          style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-        ),
-      )
-    ];
+    List<ListTile> countries1 = [];
+    List<ListTile> states1 = [];
     var temp = await http.get('https://disease.sh/v3/covid-19/jhucsse');
     var jsonResall = convert.jsonDecode(temp.body);
-    int index = 1;
     for (int i = 0; i < jsonResall.length; i++) {
       if (jsonResall[i]['province'] == null) {
-        placesall1.insert(
-            index,
-            ListTile(
-              title: Text(
-                jsonResall[i]['country'],
-                style: GoogleFonts.lato(),
-              ),
-              onTap: () {
-                Navigator.pop(context, [jsonResall[i]['country'], null]);
-              },
-            ));
-        index++;
+        countries1.add(ListTile(
+          title: Text(
+            jsonResall[i]['country'],
+            style: GoogleFonts.lato(),
+          ),
+          onTap: () {
+            Navigator.pop(context, [jsonResall[i]['country'], null]);
+          },
+        ));
       } else {
-        placesall1.add(ListTile(
+        states1.add(ListTile(
           title: Text(
             jsonResall[i]['province'],
             style: GoogleFonts.lato(),
@@ -66,7 +46,8 @@ class _CitySelectState extends State<CitySelect> {
     }
     setState(() {
       show = false;
-      placesall = placesall1;
+      countries = countries1;
+      states = states1;
     });
   }
 
@@ -83,36 +64,63 @@ class _CitySelectState extends State<CitySelect> {
           textTheme: GoogleFonts.latoTextTheme(
         Theme.of(context).textTheme,
       ).apply(bodyColor: Colors.white, displayColor: Colors.white)),
-      home: Scaffold(
-        body: ModalProgressHUD(
-          opacity: 0,
-          inAsyncCall: show,
-          child: CustomScrollView(
-            physics: BouncingScrollPhysics(),
-            slivers: [
-              SliverAppBar(
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(20))),
-                stretch: true,
-                expandedHeight: 200,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Hero(
-                    tag: 'search',
-                    child: Icon(Icons.search, size: 100, color: Colors.white),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: ModalProgressHUD(
+            opacity: 0,
+            inAsyncCall: show,
+            child: CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  primary: true,
+                  floating: true,
+                  pinned: true,
+                  bottom:
+                      TabBar(indicatorSize: TabBarIndicatorSize.label, tabs: [
+                    Tab(
+                      child: Text('Countries',
+                          style: GoogleFonts.lato(
+                              textStyle: TextStyle(fontSize: 20))),
+                    ),
+                    Tab(
+                        child: Text('States',
+                            style: GoogleFonts.lato(
+                                textStyle: TextStyle(fontSize: 20))))
+                  ]),
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.vertical(bottom: Radius.circular(20))),
+                  stretch: true,
+                  expandedHeight: 200,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Hero(
+                      tag: 'search',
+                      child: Icon(Icons.search, size: 100, color: Colors.white),
+                    ),
+                    stretchModes: [
+                      StretchMode.zoomBackground,
+                      StretchMode.blurBackground,
+                    ],
+                    centerTitle: true,
                   ),
-                  stretchModes: [
-                    StretchMode.zoomBackground,
-                    StretchMode.blurBackground,
-                  ],
-                  centerTitle: true,
                 ),
-              ),
-              SliverList(
-                  delegate: SliverChildListDelegate(
-                placesall,
-              ))
-            ],
+                SliverFillRemaining(
+                  child: TabBarView(children: [
+                    ListView(
+                      physics: BouncingScrollPhysics(),
+                      children: countries,
+                    ),
+                    ListView(
+                      physics: BouncingScrollPhysics(),
+                      children: states,
+                    )
+                  ]),
+                ),
+              ],
+            ),
           ),
         ),
       ),
