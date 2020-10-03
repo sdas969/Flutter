@@ -58,6 +58,7 @@ class _HomePageState extends State<HomePage> {
   var dead = '...';
   var updated = '...';
   var deathrate = '...';
+  List<String> pages = ['Corona', 'Prevention', 'About'];
   double maxY = 0;
   List<String> maxX = List.filled(14, '...');
   List<FlSpot> cases = [FlSpot(0, 0)];
@@ -254,8 +255,10 @@ class _HomePageState extends State<HomePage> {
             Tab(icon: Icon(Icons.info))
           ]),
           body: TabBarView(
-            children: [
-              Scaffold(
+              children: pages.map((String page) {
+            if (page == pages[0]) {
+              return Scaffold(
+                key: PageStorageKey<String>(page),
                 body: SafeArea(
                   child: SmartRefresher(
                     header: WaterDropHeader(),
@@ -755,11 +758,14 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-              ),
-              PreventionPage(),
-              AboutPage()
-            ],
-          ),
+              );
+            } else if (page == pages[1])
+              return Scaffold(
+                  key: PageStorageKey<String>(page), body: PreventionPage());
+            else
+              return Scaffold(
+                  key: PageStorageKey<String>(page), body: AboutPage());
+          }).toList()),
         ),
       ),
     );

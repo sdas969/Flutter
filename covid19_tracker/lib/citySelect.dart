@@ -12,6 +12,7 @@ class CitySelect extends StatefulWidget {
 class _CitySelectState extends State<CitySelect> {
   List<ListTile> countries = [];
   List<ListTile> states = [];
+  List<String> tabs = ['Countries', 'States'];
   bool show = true;
   Future<void> places() async {
     List<ListTile> countries1 = [];
@@ -70,54 +71,60 @@ class _CitySelectState extends State<CitySelect> {
           body: ModalProgressHUD(
             opacity: 0,
             inAsyncCall: show,
-            child: CustomScrollView(
-              physics: BouncingScrollPhysics(),
-              slivers: [
-                SliverAppBar(
-                  floating: true,
-                  pinned: true,
-                  bottom:
-                      TabBar(indicatorSize: TabBarIndicatorSize.label, tabs: [
-                    Tab(
-                      child: Text('Countries',
-                          style: GoogleFonts.lato(
-                              textStyle: TextStyle(fontSize: 20))),
+            child: NestedScrollView(
+              headerSliverBuilder: (context, innerBoxIsScrolled) {
+                return <Widget>[
+                  SliverAppBar(
+                    floating: true,
+                    pinned: true,
+                    bottom:
+                        TabBar(indicatorSize: TabBarIndicatorSize.label, tabs: [
+                      Tab(
+                          child: Text(
+                        'Countries',
+                        style: GoogleFonts.lato(
+                            textStyle: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                      )),
+                      Tab(
+                          child: Text('States',
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold))))
+                    ]),
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(20))),
+                    stretch: true,
+                    expandedHeight: 200,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Hero(
+                        tag: 'search',
+                        child:
+                            Icon(Icons.search, size: 100, color: Colors.white),
+                      ),
+                      stretchModes: [
+                        StretchMode.zoomBackground,
+                        StretchMode.blurBackground,
+                      ],
+                      centerTitle: true,
                     ),
-                    Tab(
-                        child: Text('States',
-                            style: GoogleFonts.lato(
-                                textStyle: TextStyle(fontSize: 20))))
-                  ]),
-                  shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.vertical(bottom: Radius.circular(20))),
-                  stretch: true,
-                  expandedHeight: 200,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Hero(
-                      tag: 'search',
-                      child: Icon(Icons.search, size: 100, color: Colors.white),
-                    ),
-                    stretchModes: [
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                    ],
-                    centerTitle: true,
                   ),
-                ),
-                SliverFillRemaining(
-                  child: TabBarView(children: [
-                    ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: countries,
-                    ),
-                    ListView(
-                      physics: BouncingScrollPhysics(),
-                      children: states,
-                    )
-                  ]),
-                ),
-              ],
+                ];
+              },
+              body: TabBarView(
+                  children: tabs.map((String name) {
+                return CustomScrollView(
+                  key: PageStorageKey<String>(name),
+                  physics: BouncingScrollPhysics(),
+                  slivers: [
+                    SliverList(
+                        delegate: SliverChildListDelegate(
+                            name == 'Countries' ? countries : states))
+                  ],
+                );
+              }).toList()),
             ),
           ),
         ),
