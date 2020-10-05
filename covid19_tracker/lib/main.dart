@@ -58,8 +58,26 @@ class _HomePageState extends State<HomePage> {
   var dead = '...';
   var updated = '...';
   var deathrate = '...';
+  bool separated = true;
   List<String> pages = ['Corona', 'Prevention', 'About'];
-  double maxY = 0;
+  double maxYc = 0;
+  double maxYr = 0;
+  double maxYd = 0;
+  double minYc = 0;
+  double minYr = 0;
+  double minYd = 0;
+  List<Color> gradientColorsconf = [
+    const Color(0xFFFF9800),
+    const Color(0xFFFFA726),
+  ];
+  List<Color> gradientColorsrecv = [
+    const Color(0xFF4CAF50),
+    const Color(0xFF66BB6A),
+  ];
+  List<Color> gradientColorsdead = [
+    const Color(0xFFF44336),
+    const Color(0xFFEF5350),
+  ];
   List<String> maxX = List.filled(14, '...');
   List<FlSpot> cases = [FlSpot(0, 0)];
   List<FlSpot> deaths = [FlSpot(0, 0)];
@@ -103,7 +121,12 @@ class _HomePageState extends State<HomePage> {
       dead = '...';
       updated = '...';
       deathrate = '...';
-      maxY = 0;
+      maxYc = 0;
+      maxYr = 0;
+      maxYd = 0;
+      minYc = 0;
+      minYr = 0;
+      minYd = 0;
       maxX = List.filled(14, '...');
       cases = [FlSpot(0, 0)];
       deaths = [FlSpot(0, 0)];
@@ -160,7 +183,18 @@ class _HomePageState extends State<HomePage> {
             double.parse(jsonResHist['timeline']['deaths'][i].toString())));
         recovered1.add(FlSpot(ind,
             double.parse(jsonResHist['timeline']['recovered'][i].toString())));
-        maxY = double.parse(jsonResHist['timeline']['cases'][i].toString());
+        if (ind == 0) {
+          minYc = double.parse(jsonResHist['timeline']['cases'][i].toString());
+          minYr =
+              double.parse(jsonResHist['timeline']['recovered'][i].toString());
+          minYd = double.parse(jsonResHist['timeline']['deaths'][i].toString());
+        }
+        if (ind == 13) {
+          maxYc = double.parse(jsonResHist['timeline']['cases'][i].toString());
+          maxYr =
+              double.parse(jsonResHist['timeline']['recovered'][i].toString());
+          maxYd = double.parse(jsonResHist['timeline']['deaths'][i].toString());
+        }
         maxX1.add((i.split('/'))[1]);
         if (ind > 8.0 && ind <= 13) {
           rowdata1.add(DataRow(cells: <DataCell>[
@@ -555,126 +589,559 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(40),
-                                      child: LineChart(
-                                        LineChartData(
-                                            gridData: FlGridData(
-                                              show: true,
-                                              drawVerticalLine: true,
-                                              drawHorizontalLine: true,
-                                              getDrawingHorizontalLine:
-                                                  (value) {
-                                                return FlLine(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          110, 40, 110, 0),
+                                      child: RaisedButton(
+                                          padding: EdgeInsets.all(11),
+                                          child: separated == true
+                                              ? Text(
+                                                  'Combined',
+                                                  style: GoogleFonts.lato(
+                                                      textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  )),
+                                                )
+                                              : Text(
+                                                  'In-Depth',
+                                                  style: GoogleFonts.lato(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                          onPressed: () {
+                                            setState(() {
+                                              separated = (!separated);
+                                            });
+                                          }),
+                                    ),
+                                    Visibility(
+                                      visible: !separated,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            40, 20, 40, 40),
+                                        child: LineChart(
+                                          LineChartData(
+                                              gridData: FlGridData(
+                                                show: false,
+                                                drawVerticalLine: false,
+                                                drawHorizontalLine: false,
+                                                getDrawingHorizontalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      strokeWidth: 1);
+                                                },
+                                                getDrawingVerticalLine:
+                                                    (value) {
+                                                  return FlLine(
                                                     color: Colors.grey
                                                         .withOpacity(0.2),
-                                                    strokeWidth: 1);
-                                              },
-                                              getDrawingVerticalLine: (value) {
-                                                return FlLine(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.2),
-                                                  strokeWidth: 1,
-                                                );
-                                              },
-                                            ),
-                                            borderData: FlBorderData(
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
+                                              ),
+                                              borderData: FlBorderData(
+                                                  show: true,
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.2),
+                                                      width: 0.2)),
+                                              minX: 0,
+                                              minY: minYd / 1.1,
+                                              maxX: 13,
+                                              maxY: (maxYc * 1.1),
+                                              lineBarsData: [
+                                                LineChartBarData(
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    colors: gradientColorsconf,
+                                                    spots: cases,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsconf
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList())),
+                                                LineChartBarData(
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    colors: gradientColorsrecv,
+                                                    spots: recovered,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsrecv
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList())),
+                                                LineChartBarData(
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    colors: gradientColorsdead,
+                                                    spots: deaths,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsdead
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList()))
+                                              ],
+                                              titlesData: FlTitlesData(
                                                 show: true,
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 1)),
-                                            minX: 0,
-                                            minY: 0,
-                                            maxX: 13,
-                                            maxY: (maxY * 1.1),
-                                            lineBarsData: [
-                                              LineChartBarData(
-                                                  colors: [Colors.orangeAccent],
-                                                  spots: cases,
-                                                  isCurved: true,
-                                                  barWidth: 5,
-                                                  isStrokeCapRound: true,
-                                                  belowBarData: BarAreaData(
-                                                      show: true,
-                                                      colors: [
-                                                        Colors.orange
-                                                            .withOpacity(0.2)
-                                                      ])),
-                                              LineChartBarData(
-                                                  colors: [Colors.greenAccent],
-                                                  spots: recovered,
-                                                  isCurved: true,
-                                                  barWidth: 5,
-                                                  isStrokeCapRound: true,
-                                                  belowBarData: BarAreaData(
-                                                      show: true,
-                                                      colors: [
-                                                        Colors.green
-                                                            .withOpacity(0.2)
-                                                      ])),
-                                              LineChartBarData(
-                                                  colors: [Colors.redAccent],
-                                                  spots: deaths,
-                                                  isCurved: true,
-                                                  barWidth: 5,
-                                                  isStrokeCapRound: true,
-                                                  belowBarData: BarAreaData(
-                                                      show: true,
-                                                      colors: [
-                                                        Colors.red
-                                                            .withOpacity(0.2)
-                                                      ]))
-                                            ],
-                                            titlesData: FlTitlesData(
-                                              show: true,
-                                              bottomTitles: SideTitles(
-                                                  rotateAngle: 45,
-                                                  showTitles: true,
+                                                bottomTitles: SideTitles(
+                                                    rotateAngle: 45,
+                                                    showTitles: true,
+                                                    reservedSize: 15,
+                                                    getTitles: (value) {
+                                                      return maxX[value ~/ 1];
+                                                    },
+                                                    margin: 15,
+                                                    textStyle: GoogleFonts.lato(
+                                                        textStyle: TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontSize: 10))),
+                                                leftTitles: SideTitles(
+                                                  interval: maxYc == 0
+                                                      ? double.infinity
+                                                      : ((maxYc - minYd) *
+                                                          2 /
+                                                          10),
                                                   reservedSize: 15,
+                                                  showTitles: true,
                                                   getTitles: (value) {
-                                                    return maxX[value ~/ 1];
+                                                    if ((value ~/ 100000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}M';
+                                                    else if ((value ~/
+                                                            10000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}M';
+                                                    else if ((value ~/
+                                                            1000000) >=
+                                                        1)
+                                                      return '${(value / 1000000).toStringAsFixed(2)}M';
+                                                    else if ((value ~/
+                                                            100000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}K';
+                                                    else if ((value ~/ 10000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}K';
+                                                    else if ((value ~/ 1000) >=
+                                                        1)
+                                                      return '${(value / 1000).toStringAsFixed(2)}K';
+                                                    else
+                                                      return (value ~/ 1)
+                                                          .toString();
                                                   },
-                                                  margin: 15,
                                                   textStyle: GoogleFonts.lato(
                                                       textStyle: TextStyle(
                                                           color: Colors.white70,
-                                                          fontSize: 10))),
-                                              leftTitles: SideTitles(
-                                                interval: maxY == 0
-                                                    ? double.infinity
-                                                    : (maxY * 1.1 / 10),
-                                                reservedSize: 15,
-                                                showTitles: true,
-                                                getTitles: (value) {
-                                                  if ((value ~/ 100000000) >= 1)
-                                                    return '${value.toString().substring(0, 3)}M';
-                                                  else if ((value ~/
-                                                          10000000) >=
-                                                      1)
-                                                    return '${value.toString().substring(0, 2)}M';
-                                                  else if ((value ~/ 1000000) >=
-                                                      1)
-                                                    return '${(value / 1000000).toStringAsFixed(2)}M';
-                                                  else if ((value ~/ 100000) >=
-                                                      1)
-                                                    return '${value.toString().substring(0, 3)}K';
-                                                  else if ((value ~/ 10000) >=
-                                                      1)
-                                                    return '${value.toString().substring(0, 2)}K';
-                                                  else if ((value ~/ 1000) >= 1)
-                                                    return '${(value / 1000).toStringAsFixed(2)}K';
-                                                  else
-                                                    return (value ~/ 1)
-                                                        .toString();
+                                                          fontSize: 10)),
+                                                  margin: 20,
+                                                ),
+                                              )),
+                                          swapAnimationDuration:
+                                              Duration(milliseconds: 2),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top: 40),
+                                        child: Text('Confirmed',
+                                            textAlign: TextAlign.center,
+                                            style: GoogleFonts.lato(
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.orange))),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            40, 20, 40, 40),
+                                        child: LineChart(
+                                          LineChartData(
+                                              gridData: FlGridData(
+                                                show: true,
+                                                drawVerticalLine: false,
+                                                drawHorizontalLine: false,
+                                                getDrawingHorizontalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      strokeWidth: 1);
                                                 },
-                                                textStyle: GoogleFonts.lato(
-                                                    textStyle: TextStyle(
-                                                        color: Colors.white70,
-                                                        fontSize: 10)),
-                                                margin: 20,
+                                                getDrawingVerticalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
                                               ),
-                                            )),
-                                        swapAnimationDuration:
-                                            Duration(milliseconds: 2),
+                                              borderData: FlBorderData(
+                                                  show: true,
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.2),
+                                                      width: 0.2)),
+                                              minX: 0,
+                                              minY: minYc / 1.1,
+                                              maxX: 13,
+                                              maxY: (maxYc * 1.1),
+                                              lineBarsData: [
+                                                LineChartBarData(
+                                                    colors: gradientColorsconf,
+                                                    spots: cases,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsconf
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList())),
+                                              ],
+                                              titlesData: FlTitlesData(
+                                                show: true,
+                                                bottomTitles: SideTitles(
+                                                    rotateAngle: 45,
+                                                    showTitles: true,
+                                                    reservedSize: 15,
+                                                    getTitles: (value) {
+                                                      return maxX[value ~/ 1];
+                                                    },
+                                                    margin: 15,
+                                                    textStyle: GoogleFonts.lato(
+                                                        textStyle: TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontSize: 10))),
+                                                leftTitles: SideTitles(
+                                                  interval: maxYc == 0
+                                                      ? double.infinity
+                                                      : ((maxYc - minYc) *
+                                                          2 /
+                                                          10),
+                                                  reservedSize: 15,
+                                                  showTitles: true,
+                                                  getTitles: (value) {
+                                                    if ((value ~/ 100000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}M';
+                                                    else if ((value ~/
+                                                            10000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}M';
+                                                    else if ((value ~/
+                                                            1000000) >=
+                                                        1)
+                                                      return '${(value / 1000000).toStringAsFixed(2)}M';
+                                                    else if ((value ~/
+                                                            100000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}K';
+                                                    else if ((value ~/ 10000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}K';
+                                                    else if ((value ~/ 1000) >=
+                                                        1)
+                                                      return '${(value / 1000).toStringAsFixed(2)}K';
+                                                    else
+                                                      return (value ~/ 1)
+                                                          .toString();
+                                                  },
+                                                  textStyle: GoogleFonts.lato(
+                                                      textStyle: TextStyle(
+                                                          color: Colors.white70,
+                                                          fontSize: 10)),
+                                                  margin: 20,
+                                                ),
+                                              )),
+                                          swapAnimationDuration:
+                                              Duration(milliseconds: 2),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Text('Recovered',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.lato(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              textStyle: TextStyle(
+                                                  color: Colors.green))),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            40, 20, 40, 40),
+                                        child: LineChart(
+                                          LineChartData(
+                                              gridData: FlGridData(
+                                                show: true,
+                                                drawVerticalLine: false,
+                                                drawHorizontalLine: false,
+                                                getDrawingHorizontalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      strokeWidth: 1);
+                                                },
+                                                getDrawingVerticalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
+                                              ),
+                                              borderData: FlBorderData(
+                                                  show: true,
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.2),
+                                                      width: 0.2)),
+                                              minX: 0,
+                                              minY: minYr / 1.1,
+                                              maxX: 13,
+                                              maxY: (maxYr * 1.1),
+                                              lineBarsData: [
+                                                LineChartBarData(
+                                                    colors: gradientColorsrecv,
+                                                    spots: recovered,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsrecv
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList())),
+                                              ],
+                                              titlesData: FlTitlesData(
+                                                show: true,
+                                                bottomTitles: SideTitles(
+                                                    rotateAngle: 45,
+                                                    showTitles: true,
+                                                    reservedSize: 15,
+                                                    getTitles: (value) {
+                                                      return maxX[value ~/ 1];
+                                                    },
+                                                    margin: 15,
+                                                    textStyle: GoogleFonts.lato(
+                                                        textStyle: TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontSize: 10))),
+                                                leftTitles: SideTitles(
+                                                  interval: maxYr == 0
+                                                      ? double.infinity
+                                                      : ((maxYr - minYr) *
+                                                          2 /
+                                                          10),
+                                                  reservedSize: 15,
+                                                  showTitles: true,
+                                                  getTitles: (value) {
+                                                    if ((value ~/ 100000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}M';
+                                                    else if ((value ~/
+                                                            10000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}M';
+                                                    else if ((value ~/
+                                                            1000000) >=
+                                                        1)
+                                                      return '${(value / 1000000).toStringAsFixed(2)}M';
+                                                    else if ((value ~/
+                                                            100000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}K';
+                                                    else if ((value ~/ 10000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}K';
+                                                    else if ((value ~/ 1000) >=
+                                                        1)
+                                                      return '${(value / 1000).toStringAsFixed(2)}K';
+                                                    else
+                                                      return (value ~/ 1)
+                                                          .toString();
+                                                  },
+                                                  textStyle: GoogleFonts.lato(
+                                                      textStyle: TextStyle(
+                                                          color: Colors.white70,
+                                                          fontSize: 10)),
+                                                  margin: 20,
+                                                ),
+                                              )),
+                                          swapAnimationDuration:
+                                              Duration(milliseconds: 2),
+                                        ),
+                                      ),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Text('Deaths',
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.lato(
+                                              textStyle: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.red))),
+                                    ),
+                                    Visibility(
+                                      visible: separated,
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            40, 20, 40, 40),
+                                        child: LineChart(
+                                          LineChartData(
+                                              gridData: FlGridData(
+                                                show: true,
+                                                drawVerticalLine: false,
+                                                drawHorizontalLine: false,
+                                                getDrawingHorizontalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                      color: Colors.grey
+                                                          .withOpacity(0.2),
+                                                      strokeWidth: 1);
+                                                },
+                                                getDrawingVerticalLine:
+                                                    (value) {
+                                                  return FlLine(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.2),
+                                                    strokeWidth: 1,
+                                                  );
+                                                },
+                                              ),
+                                              borderData: FlBorderData(
+                                                  show: true,
+                                                  border: Border.all(
+                                                      color: Colors.white
+                                                          .withOpacity(0.2),
+                                                      width: 0.2)),
+                                              minX: 0,
+                                              minY: minYd / 1.1,
+                                              maxX: 13,
+                                              maxY: (maxYd * 1.1),
+                                              lineBarsData: [
+                                                LineChartBarData(
+                                                    colors: gradientColorsdead,
+                                                    spots: deaths,
+                                                    isCurved: true,
+                                                    barWidth: 5,
+                                                    isStrokeCapRound: true,
+                                                    dotData: FlDotData(
+                                                      show: false,
+                                                    ),
+                                                    belowBarData: BarAreaData(
+                                                        show: true,
+                                                        colors: gradientColorsdead
+                                                            .map((color) => color
+                                                                .withOpacity(
+                                                                    0.2))
+                                                            .toList()))
+                                              ],
+                                              titlesData: FlTitlesData(
+                                                show: true,
+                                                bottomTitles: SideTitles(
+                                                    rotateAngle: 45,
+                                                    showTitles: true,
+                                                    reservedSize: 15,
+                                                    getTitles: (value) {
+                                                      return maxX[value ~/ 1];
+                                                    },
+                                                    margin: 15,
+                                                    textStyle: GoogleFonts.lato(
+                                                        textStyle: TextStyle(
+                                                            color:
+                                                                Colors.white70,
+                                                            fontSize: 10))),
+                                                leftTitles: SideTitles(
+                                                  interval: maxYd == 0
+                                                      ? double.infinity
+                                                      : ((maxYd - minYd) *
+                                                          2 /
+                                                          10),
+                                                  reservedSize: 15,
+                                                  showTitles: true,
+                                                  getTitles: (value) {
+                                                    if ((value ~/ 100000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}M';
+                                                    else if ((value ~/
+                                                            10000000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}M';
+                                                    else if ((value ~/
+                                                            1000000) >=
+                                                        1)
+                                                      return '${(value / 1000000).toStringAsFixed(2)}M';
+                                                    else if ((value ~/
+                                                            100000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 3)}K';
+                                                    else if ((value ~/ 10000) >=
+                                                        1)
+                                                      return '${value.toString().substring(0, 2)}K';
+                                                    else if ((value ~/ 1000) >=
+                                                        1)
+                                                      return '${(value / 1000).toStringAsFixed(2)}K';
+                                                    else
+                                                      return (value ~/ 1)
+                                                          .toString();
+                                                  },
+                                                  textStyle: GoogleFonts.lato(
+                                                      textStyle: TextStyle(
+                                                          color: Colors.white70,
+                                                          fontSize: 10)),
+                                                  margin: 20,
+                                                ),
+                                              )),
+                                          swapAnimationDuration:
+                                              Duration(milliseconds: 2),
+                                        ),
                                       ),
                                     )
                                   ],
