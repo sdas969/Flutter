@@ -699,11 +699,13 @@ class _HomePageState extends State<HomePage> {
                                                                 Colors.white70,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: maxYc == 0
+                                                  interval: ((maxYc * 1.1) -
+                                                              (minYd / 1.1)) ==
+                                                          0
                                                       ? double.infinity
-                                                      : ((maxYc - minYd) *
-                                                          2 /
-                                                          10),
+                                                      : ((maxYc * 1.1) -
+                                                              (minYd / 1.1)) /
+                                                          10,
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -809,11 +811,13 @@ class _HomePageState extends State<HomePage> {
                                                                 Colors.white70,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: maxYc == 0
+                                                  interval: ((maxYc * 1.1) -
+                                                              (minYc / 1.1)) ==
+                                                          0
                                                       ? double.infinity
-                                                      : ((maxYc - minYc) *
-                                                          2 /
-                                                          10),
+                                                      : ((maxYc * 1.1) -
+                                                              (minYc / 1.1)) /
+                                                          10,
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -916,11 +920,13 @@ class _HomePageState extends State<HomePage> {
                                                                 Colors.white70,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: maxYr == 0
+                                                  interval: ((maxYr * 1.1) -
+                                                              (minYr / 1.1)) ==
+                                                          0
                                                       ? double.infinity
-                                                      : ((maxYr - minYr) *
-                                                          2 /
-                                                          10),
+                                                      : ((maxYr * 1.1) -
+                                                              (minYr / 1.1)) /
+                                                          10,
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -1023,11 +1029,13 @@ class _HomePageState extends State<HomePage> {
                                                                 Colors.white70,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: maxYd == 0
+                                                  interval: ((maxYd * 1.1) -
+                                                              (minYd / 1.1)) ==
+                                                          0
                                                       ? double.infinity
-                                                      : ((maxYd - minYd) *
-                                                          2 /
-                                                          10),
+                                                      : ((maxYd * 1.1) -
+                                                              (minYd / 1.1)) /
+                                                          10,
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {

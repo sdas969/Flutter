@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
@@ -11,12 +12,17 @@ class CitySelect extends StatefulWidget {
 
 class _CitySelectState extends State<CitySelect> {
   List<ListTile> countries = [];
+  TextEditingController _textController = TextEditingController();
   List<ListTile> states = [];
+  List<ListTile> newCountry = [];
+  List<ListTile> newStates = [];
   List<String> tabs = ['Countries', 'States'];
   bool show = true;
   Future<void> places() async {
     List<ListTile> countries1 = [];
     List<ListTile> states1 = [];
+    newCountry = List.from(countries);
+    newStates = [];
     var temp = await http.get('https://disease.sh/v3/covid-19/jhucsse');
     var jsonResall = convert.jsonDecode(temp.body);
     for (int i = 0; i < jsonResall.length; i++) {
@@ -45,10 +51,13 @@ class _CitySelectState extends State<CitySelect> {
         ));
       }
     }
+
     setState(() {
       show = false;
       countries = countries1;
       states = states1;
+      newCountry = List.from(countries1);
+      newStates = List.from(states1);
     });
   }
 
@@ -97,13 +106,62 @@ class _CitySelectState extends State<CitySelect> {
                         borderRadius:
                             BorderRadius.vertical(bottom: Radius.circular(20))),
                     stretch: true,
-                    expandedHeight: 200,
+                    expandedHeight: 300,
                     flexibleSpace: FlexibleSpaceBar(
                       background: Hero(
-                        tag: 'search',
-                        child:
-                            Icon(Icons.search, size: 100, color: Colors.white),
-                      ),
+                          tag: 'search',
+                          child: Column(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Icon(Icons.search,
+                                    size: 100, color: Colors.white),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(74, 11, 74, 11),
+                                  child: CupertinoTextField(
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newCountry = countries
+                                            .where((element) => element.title
+                                                .toString()
+                                                .toLowerCase()
+                                                .contains(value.toLowerCase()))
+                                            .toList();
+                                        newStates = states
+                                            .where((element) => element.title
+                                                .toString()
+                                                .toLowerCase()
+                                                .contains(value.toLowerCase()))
+                                            .toList();
+                                      });
+                                    },
+                                    style: GoogleFonts.lato(
+                                        textStyle:
+                                            TextStyle(color: Colors.white)),
+                                    prefix: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 11),
+                                        child: Icon(
+                                          Icons.search,
+                                          color: Color(0xffC4C6CC),
+                                        ),
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blueGrey[900],
+                                      borderRadius: BorderRadius.circular(11),
+                                    ),
+                                    controller: _textController,
+                                  ),
+                                ),
+                              ),
+                              Expanded(child: Container())
+                            ],
+                          )),
                       stretchModes: [
                         StretchMode.zoomBackground,
                         StretchMode.blurBackground,
@@ -121,7 +179,7 @@ class _CitySelectState extends State<CitySelect> {
                   slivers: [
                     SliverList(
                         delegate: SliverChildListDelegate(
-                            name == 'Countries' ? countries : states))
+                            name == 'Countries' ? newCountry : newStates))
                   ],
                 );
               }).toList()),
@@ -132,3 +190,5 @@ class _CitySelectState extends State<CitySelect> {
     );
   }
 }
+
+// DefaultTabController.of(context).index
