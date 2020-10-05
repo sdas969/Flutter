@@ -622,26 +622,7 @@ class _HomePageState extends State<HomePage> {
                                             40, 20, 40, 40),
                                         child: LineChart(
                                           LineChartData(
-                                              gridData: FlGridData(
-                                                show: false,
-                                                drawVerticalLine: false,
-                                                drawHorizontalLine: false,
-                                                getDrawingHorizontalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.2),
-                                                      strokeWidth: 1);
-                                                },
-                                                getDrawingVerticalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    strokeWidth: 1,
-                                                  );
-                                                },
-                                              ),
+                                              gridData: FlGridData(show: false),
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
@@ -660,7 +641,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsconf,
                                                     spots: cases,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     belowBarData: BarAreaData(
                                                         show: true,
@@ -676,7 +657,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsrecv,
                                                     spots: recovered,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     belowBarData: BarAreaData(
                                                         show: true,
@@ -692,7 +673,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsdead,
                                                     spots: deaths,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     belowBarData: BarAreaData(
                                                         show: true,
@@ -783,26 +764,7 @@ class _HomePageState extends State<HomePage> {
                                             40, 20, 40, 40),
                                         child: LineChart(
                                           LineChartData(
-                                              gridData: FlGridData(
-                                                show: true,
-                                                drawVerticalLine: false,
-                                                drawHorizontalLine: false,
-                                                getDrawingHorizontalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.2),
-                                                      strokeWidth: 1);
-                                                },
-                                                getDrawingVerticalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    strokeWidth: 1,
-                                                  );
-                                                },
-                                              ),
+                                              gridData: FlGridData(show: false),
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
@@ -818,7 +780,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsconf,
                                                     spots: cases,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     dotData: FlDotData(
                                                       show: false,
@@ -909,26 +871,7 @@ class _HomePageState extends State<HomePage> {
                                             40, 20, 40, 40),
                                         child: LineChart(
                                           LineChartData(
-                                              gridData: FlGridData(
-                                                show: true,
-                                                drawVerticalLine: false,
-                                                drawHorizontalLine: false,
-                                                getDrawingHorizontalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.2),
-                                                      strokeWidth: 1);
-                                                },
-                                                getDrawingVerticalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    strokeWidth: 1,
-                                                  );
-                                                },
-                                              ),
+                                              gridData: FlGridData(show: false),
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
@@ -944,7 +887,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsrecv,
                                                     spots: recovered,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     dotData: FlDotData(
                                                       show: false,
@@ -1035,26 +978,7 @@ class _HomePageState extends State<HomePage> {
                                             40, 20, 40, 40),
                                         child: LineChart(
                                           LineChartData(
-                                              gridData: FlGridData(
-                                                show: true,
-                                                drawVerticalLine: false,
-                                                drawHorizontalLine: false,
-                                                getDrawingHorizontalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.2),
-                                                      strokeWidth: 1);
-                                                },
-                                                getDrawingVerticalLine:
-                                                    (value) {
-                                                  return FlLine(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.2),
-                                                    strokeWidth: 1,
-                                                  );
-                                                },
-                                              ),
+                                              gridData: FlGridData(show: false),
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
@@ -1070,7 +994,7 @@ class _HomePageState extends State<HomePage> {
                                                     colors: gradientColorsdead,
                                                     spots: deaths,
                                                     isCurved: true,
-                                                    barWidth: 5,
+                                                    barWidth: 2,
                                                     isStrokeCapRound: true,
                                                     dotData: FlDotData(
                                                       show: false,
