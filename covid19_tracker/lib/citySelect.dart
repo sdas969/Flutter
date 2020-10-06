@@ -21,13 +21,12 @@ class _CitySelectState extends State<CitySelect> {
   Future<void> places() async {
     List<ListTile> countries1 = [];
     List<ListTile> states1 = [];
-    newCountry = List.from(countries);
-    newStates = [];
     var temp = await http.get('https://disease.sh/v3/covid-19/jhucsse');
     var jsonResall = convert.jsonDecode(temp.body);
     for (int i = 0; i < jsonResall.length; i++) {
       if (jsonResall[i]['province'] == null) {
         countries1.add(ListTile(
+          key: Key(jsonResall[i]['country']),
           title: Text(
             jsonResall[i]['country'],
             style: GoogleFonts.lato(),
@@ -38,6 +37,7 @@ class _CitySelectState extends State<CitySelect> {
         ));
       } else {
         states1.add(ListTile(
+          key: Key(jsonResall[i]['province']),
           title: Text(
             jsonResall[i]['province'],
             style: GoogleFonts.lato(),
@@ -125,14 +125,26 @@ class _CitySelectState extends State<CitySelect> {
                                     onChanged: (value) {
                                       setState(() {
                                         newCountry = countries
-                                            .where((element) => element.title
+                                            .where((element) => element.key
                                                 .toString()
+                                                .substring(
+                                                    3,
+                                                    element.key
+                                                            .toString()
+                                                            .length -
+                                                        3)
                                                 .toLowerCase()
                                                 .contains(value.toLowerCase()))
                                             .toList();
                                         newStates = states
-                                            .where((element) => element.title
+                                            .where((element) => element.key
                                                 .toString()
+                                                .substring(
+                                                    3,
+                                                    element.key
+                                                            .toString()
+                                                            .length -
+                                                        3)
                                                 .toLowerCase()
                                                 .contains(value.toLowerCase()))
                                             .toList();
