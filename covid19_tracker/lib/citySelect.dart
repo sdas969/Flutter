@@ -174,7 +174,7 @@ class _CitySelectState extends State<CitySelect> {
                                       color: widget.switchVal
                                           ? Colors.blueGrey[900]
                                           : Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(11),
+                                      borderRadius: BorderRadius.circular(47),
                                     ),
                                     controller: _textController,
                                   ),
