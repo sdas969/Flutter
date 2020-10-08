@@ -39,7 +39,6 @@ class _MyAppState extends State<MyApp> {
                   fontWeight: FontWeight.w900)),
         ),
         backgroundColor: ThemeData.dark().primaryColor,
-        styleTextUnderTheLoader: TextStyle(),
         photoSize: 100.0,
         loaderColor: Colors.red);
   }
