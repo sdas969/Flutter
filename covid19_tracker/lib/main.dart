@@ -10,6 +10,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'preventionPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -170,6 +171,8 @@ class _HomePageState extends State<HomePage> {
         ])
       ];
     });
+    final prefs = await SharedPreferences.getInstance();
+    switchVal = prefs.getBool('switch') ?? true;
     var temp = await http.get('https://disease.sh/v3/covid-19/jhucsse');
     var temphist = await http.get(
         'https://disease.sh/v3/covid-19/historical/${countrytemp.replaceAll('*', '')}?lastdays=14');
@@ -272,10 +275,26 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void switchState() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      switchVal = pref.getBool('switch') ?? true;
+    });
+  }
+
+  void changeSwitch() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      switchVal = !(pref.getBool('switch') ?? true);
+      pref.setBool('switch', switchVal);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     textBody('India', 'Delhi');
+    switchState();
   }
 
   @override
@@ -324,9 +343,7 @@ class _HomePageState extends State<HomePage> {
                             Switch(
                                 value: switchVal,
                                 onChanged: (g) {
-                                  setState(() {
-                                    switchVal = g;
-                                  });
+                                  changeSwitch();
                                 }),
                             IconButton(
                                 enableFeedback: true,

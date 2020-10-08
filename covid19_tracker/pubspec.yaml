@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  shared_preferences: ^0.5.12
   fluttericon: ^1.0.7
   url_launcher: ^5.7.2
   google_fonts: ^1.1.0
