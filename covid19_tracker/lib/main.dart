@@ -58,7 +58,14 @@ class _HomePageState extends State<HomePage> {
   var dead = '...';
   var updated = '...';
   var deathrate = '...';
+  bool switchVal = true;
   bool separated = true;
+  ThemeData themeDatadark = ThemeData.dark().copyWith(
+      textTheme: GoogleFonts.latoTextTheme()
+          .apply(bodyColor: Colors.white, displayColor: Colors.white));
+  ThemeData themeDatalight = ThemeData.light().copyWith(
+      textTheme: GoogleFonts.latoTextTheme()
+          .apply(bodyColor: Colors.black, displayColor: Colors.black));
   List<String> pages = ['Corona', 'Prevention', 'About'];
   double maxYc = 0;
   double maxYr = 0;
@@ -275,18 +282,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-          textTheme: GoogleFonts.latoTextTheme(
-        Theme.of(context).textTheme,
-      ).apply(bodyColor: Colors.white, displayColor: Colors.white)),
+      theme: switchVal ? themeDatadark : themeDatalight,
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
           bottomNavigationBar:
               TabBar(indicatorSize: TabBarIndicatorSize.label, tabs: [
-            Tab(icon: Icon(FontAwesome5.virus)),
-            Tab(icon: Icon(RpgAwesome.health)),
-            Tab(icon: Icon(Icons.info))
+            Tab(
+                icon: Icon(FontAwesome5.virus,
+                    color: switchVal ? Colors.white : Colors.black)),
+            Tab(
+                icon: Icon(RpgAwesome.health,
+                    color: switchVal ? Colors.white : Colors.black)),
+            Tab(
+                icon: Icon(Icons.info,
+                    color: switchVal ? Colors.white : Colors.black))
           ]),
           body: TabBarView(
               children: pages.map((String page) {
@@ -312,19 +322,25 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.vertical(
                                   bottom: Radius.circular(20))),
                           actions: [
+                            Switch(
+                                value: switchVal,
+                                onChanged: (g) {
+                                  setState(() {
+                                    switchVal = g;
+                                  });
+                                }),
                             IconButton(
                                 enableFeedback: true,
                                 icon: Hero(
                                     tag: 'search',
-                                    child: Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                    )),
+                                    child: Icon(Icons.search,
+                                        color: Colors.white)),
                                 onPressed: () async {
                                   final countrystate = await Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => CitySelect()));
+                                          builder: (context) =>
+                                              CitySelect(switchVal)));
                                   countrystate == null
                                       ? textBody(selcountry,
                                           selstate == '' ? null : selstate)
@@ -585,26 +601,30 @@ class _HomePageState extends State<HomePage> {
                                         'for 2 weeks',
                                         style: GoogleFonts.lato(
                                             textStyle: TextStyle(
-                                                color: Colors.white70)),
+                                                color: switchVal
+                                                    ? Colors.white70
+                                                    : Colors.black87)),
                                       ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           110, 40, 110, 0),
                                       child: RaisedButton(
+                                          color: Colors.blue[900],
                                           padding: EdgeInsets.all(11),
                                           child: separated == true
                                               ? Text(
                                                   'Combined',
                                                   style: GoogleFonts.lato(
-                                                      textStyle: TextStyle(
+                                                    color: Colors.white,
                                                     fontSize: 20,
                                                     fontWeight: FontWeight.bold,
-                                                  )),
+                                                  ),
                                                 )
                                               : Text(
                                                   'In-Depth',
                                                   style: GoogleFonts.lato(
+                                                      color: Colors.white,
                                                       fontSize: 20,
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -626,8 +646,11 @@ class _HomePageState extends State<HomePage> {
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
-                                                      color: Colors.white
-                                                          .withOpacity(0.2),
+                                                      color: switchVal
+                                                          ? Colors.white
+                                                              .withOpacity(0.2)
+                                                          : Colors.black
+                                                              .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
                                               minY: minYd / 1.1,
@@ -695,8 +718,10 @@ class _HomePageState extends State<HomePage> {
                                                     margin: 15,
                                                     textStyle: GoogleFonts.lato(
                                                         textStyle: TextStyle(
-                                                            color:
-                                                                Colors.white70,
+                                                            color: switchVal
+                                                                ? Colors.white70
+                                                                : Colors
+                                                                    .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
                                                   interval: ((maxYc * 1.1) -
@@ -736,7 +761,9 @@ class _HomePageState extends State<HomePage> {
                                                   },
                                                   textStyle: GoogleFonts.lato(
                                                       textStyle: TextStyle(
-                                                          color: Colors.white70,
+                                                          color: switchVal
+                                                              ? Colors.white70
+                                                              : Colors.black87,
                                                           fontSize: 10)),
                                                   margin: 20,
                                                 ),
@@ -770,8 +797,10 @@ class _HomePageState extends State<HomePage> {
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
-                                                      color: Colors.white
-                                                          .withOpacity(0.2),
+                                                      color: switchVal
+                                                          ? Colors.white
+                                                              .withOpacity(0.2)
+                                                          : Colors.black87,
                                                       width: 0.2)),
                                               minX: 0,
                                               minY: minYc / 1.1,
@@ -807,8 +836,10 @@ class _HomePageState extends State<HomePage> {
                                                     margin: 15,
                                                     textStyle: GoogleFonts.lato(
                                                         textStyle: TextStyle(
-                                                            color:
-                                                                Colors.white70,
+                                                            color: switchVal
+                                                                ? Colors.white70
+                                                                : Colors
+                                                                    .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
                                                   interval: ((maxYc * 1.1) -
@@ -848,7 +879,9 @@ class _HomePageState extends State<HomePage> {
                                                   },
                                                   textStyle: GoogleFonts.lato(
                                                       textStyle: TextStyle(
-                                                          color: Colors.white70,
+                                                          color: switchVal
+                                                              ? Colors.white70
+                                                              : Colors.black87,
                                                           fontSize: 10)),
                                                   margin: 20,
                                                 ),
@@ -879,8 +912,11 @@ class _HomePageState extends State<HomePage> {
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
-                                                      color: Colors.white
-                                                          .withOpacity(0.2),
+                                                      color: switchVal
+                                                          ? Colors.white
+                                                              .withOpacity(0.2)
+                                                          : Colors.black
+                                                              .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
                                               minY: minYr / 1.1,
@@ -916,8 +952,10 @@ class _HomePageState extends State<HomePage> {
                                                     margin: 15,
                                                     textStyle: GoogleFonts.lato(
                                                         textStyle: TextStyle(
-                                                            color:
-                                                                Colors.white70,
+                                                            color: switchVal
+                                                                ? Colors.white70
+                                                                : Colors
+                                                                    .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
                                                   interval: ((maxYr * 1.1) -
@@ -957,7 +995,9 @@ class _HomePageState extends State<HomePage> {
                                                   },
                                                   textStyle: GoogleFonts.lato(
                                                       textStyle: TextStyle(
-                                                          color: Colors.white70,
+                                                          color: switchVal
+                                                              ? Colors.white70
+                                                              : Colors.black87,
                                                           fontSize: 10)),
                                                   margin: 20,
                                                 ),
@@ -988,8 +1028,11 @@ class _HomePageState extends State<HomePage> {
                                               borderData: FlBorderData(
                                                   show: true,
                                                   border: Border.all(
-                                                      color: Colors.white
-                                                          .withOpacity(0.2),
+                                                      color: switchVal
+                                                          ? Colors.white
+                                                              .withOpacity(0.2)
+                                                          : Colors.black
+                                                              .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
                                               minY: minYd / 1.1,
@@ -1025,8 +1068,10 @@ class _HomePageState extends State<HomePage> {
                                                     margin: 15,
                                                     textStyle: GoogleFonts.lato(
                                                         textStyle: TextStyle(
-                                                            color:
-                                                                Colors.white70,
+                                                            color: switchVal
+                                                                ? Colors.white70
+                                                                : Colors
+                                                                    .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
                                                   interval: ((maxYd * 1.1) -
@@ -1066,7 +1111,9 @@ class _HomePageState extends State<HomePage> {
                                                   },
                                                   textStyle: GoogleFonts.lato(
                                                       textStyle: TextStyle(
-                                                          color: Colors.white70,
+                                                          color: switchVal
+                                                              ? Colors.white70
+                                                              : Colors.black87,
                                                           fontSize: 10)),
                                                   margin: 20,
                                                 ),
@@ -1106,7 +1153,9 @@ class _HomePageState extends State<HomePage> {
                                         'for 5 Days',
                                         style: GoogleFonts.lato(
                                             textStyle: TextStyle(
-                                                color: Colors.white70)),
+                                                color: switchVal
+                                                    ? Colors.white70
+                                                    : Colors.black87)),
                                       ),
                                     ),
                                     Divider(),

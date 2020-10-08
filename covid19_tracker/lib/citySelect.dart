@@ -6,6 +6,8 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CitySelect extends StatefulWidget {
+  final bool switchVal;
+  CitySelect(this.switchVal);
   @override
   _CitySelectState createState() => _CitySelectState();
 }
@@ -17,6 +19,12 @@ class _CitySelectState extends State<CitySelect> {
   List<ListTile> newCountry = [];
   List<ListTile> newStates = [];
   List<String> tabs = ['Countries', 'States'];
+  ThemeData themeDatadark = ThemeData.dark().copyWith(
+      textTheme: GoogleFonts.latoTextTheme()
+          .apply(bodyColor: Colors.white, displayColor: Colors.white));
+  ThemeData themeDatalight = ThemeData.light().copyWith(
+      textTheme: GoogleFonts.latoTextTheme()
+          .apply(bodyColor: Colors.black, displayColor: Colors.black));
   bool show = true;
   Future<void> places() async {
     List<ListTile> countries1 = [];
@@ -70,10 +78,7 @@ class _CitySelectState extends State<CitySelect> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-          textTheme: GoogleFonts.latoTextTheme(
-        Theme.of(context).textTheme,
-      ).apply(bodyColor: Colors.white, displayColor: Colors.white)),
+      theme: widget.switchVal ? themeDatadark : themeDatalight,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -151,8 +156,10 @@ class _CitySelectState extends State<CitySelect> {
                                       });
                                     },
                                     style: GoogleFonts.lato(
-                                        textStyle:
-                                            TextStyle(color: Colors.white)),
+                                        textStyle: TextStyle(
+                                            color: widget.switchVal
+                                                ? Colors.white
+                                                : Colors.black)),
                                     prefix: Center(
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -164,7 +171,9 @@ class _CitySelectState extends State<CitySelect> {
                                       ),
                                     ),
                                     decoration: BoxDecoration(
-                                      color: Colors.blueGrey[900],
+                                      color: widget.switchVal
+                                          ? Colors.blueGrey[900]
+                                          : Colors.grey[200],
                                       borderRadius: BorderRadius.circular(11),
                                     ),
                                     controller: _textController,

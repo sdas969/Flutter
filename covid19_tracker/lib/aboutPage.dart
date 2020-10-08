@@ -74,7 +74,7 @@ class _AboutPageState extends State<AboutPage> {
               background: Icon(
                 Entypo.info,
                 size: 160,
-                color: Colors.blueAccent.withOpacity(0.6),
+                color: Colors.blue[900].withOpacity(0.6),
               ),
               centerTitle: true,
               title: Text(
@@ -139,7 +139,8 @@ class _AboutPageState extends State<AboutPage> {
                             onPressed: _launchURLapk,
                             label: Text(
                               'Download',
-                              style: GoogleFonts.lato(),
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(color: Colors.white)),
                             ),
                           ),
                           RaisedButton.icon(
@@ -148,7 +149,8 @@ class _AboutPageState extends State<AboutPage> {
                             onPressed: _launchURLrepo,
                             label: Text(
                               'Repository',
-                              style: GoogleFonts.lato(),
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(color: Colors.white)),
                             ),
                           ),
                         ],
@@ -158,11 +160,15 @@ class _AboutPageState extends State<AboutPage> {
                         children: [
                           RaisedButton.icon(
                             color: Colors.black,
-                            icon: Icon(FontAwesome5.github),
+                            icon: Icon(
+                              FontAwesome5.github,
+                              color: Colors.white,
+                            ),
                             onPressed: _launchURLgit,
                             label: Text(
                               '@sdas969',
-                              style: GoogleFonts.lato(),
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(color: Colors.white)),
                             ),
                           ),
                           RaisedButton.icon(
@@ -171,7 +177,8 @@ class _AboutPageState extends State<AboutPage> {
                             onPressed: _launchURLapi,
                             label: Text(
                               'disease.sh',
-                              style: GoogleFonts.lato(),
+                              style: GoogleFonts.lato(
+                                  textStyle: TextStyle(color: Colors.white)),
                             ),
                           )
                         ],
