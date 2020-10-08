@@ -669,9 +669,11 @@ class _HomePageState extends State<HomePage> {
                                                               .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
-                                              minY: minYd / 1.1,
+                                              minY:
+                                                  (minYd / 1.1).floorToDouble(),
                                               maxX: 13,
-                                              maxY: (maxYc * 1.1),
+                                              maxY:
+                                                  (maxYc * 1.1).ceilToDouble(),
                                               lineBarsData: [
                                                 LineChartBarData(
                                                     dotData: FlDotData(
@@ -740,13 +742,18 @@ class _HomePageState extends State<HomePage> {
                                                                     .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: ((maxYc * 1.1) -
-                                                              (minYd / 1.1)) ==
+                                                  interval: ((maxYc * 1.1)
+                                                                  .floorToDouble() -
+                                                              (minYd / 1.1)
+                                                                  .floorToDouble()) ==
                                                           0
                                                       ? double.infinity
-                                                      : ((maxYc * 1.1) -
-                                                              (minYd / 1.1)) /
-                                                          10,
+                                                      : (((maxYc * 1.1)
+                                                                      .floorToDouble() -
+                                                                  (minYd / 1.1)
+                                                                      .floorToDouble()) /
+                                                              10)
+                                                          .ceilToDouble(),
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -819,9 +826,11 @@ class _HomePageState extends State<HomePage> {
                                                           : Colors.black87,
                                                       width: 0.2)),
                                               minX: 0,
-                                              minY: minYc / 1.1,
+                                              minY:
+                                                  (minYc / 1.1).floorToDouble(),
                                               maxX: 13,
-                                              maxY: (maxYc * 1.1),
+                                              maxY:
+                                                  (maxYc * 1.1).ceilToDouble(),
                                               lineBarsData: [
                                                 LineChartBarData(
                                                     colors: gradientColorsconf,
@@ -858,13 +867,18 @@ class _HomePageState extends State<HomePage> {
                                                                     .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: ((maxYc * 1.1) -
-                                                              (minYc / 1.1)) ==
+                                                  interval: ((maxYc * 1.1)
+                                                                  .floorToDouble() -
+                                                              (minYc / 1.1)
+                                                                  .floorToDouble()) ==
                                                           0
                                                       ? double.infinity
-                                                      : ((maxYc * 1.1) -
-                                                              (minYc / 1.1)) /
-                                                          10,
+                                                      : (((maxYc * 1.1)
+                                                                      .floorToDouble() -
+                                                                  (minYc / 1.1)
+                                                                      .floorToDouble()) /
+                                                              10)
+                                                          .ceilToDouble(),
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -935,9 +949,11 @@ class _HomePageState extends State<HomePage> {
                                                               .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
-                                              minY: minYr / 1.1,
+                                              minY:
+                                                  (minYr / 1.1).floorToDouble(),
                                               maxX: 13,
-                                              maxY: (maxYr * 1.1),
+                                              maxY:
+                                                  (maxYr * 1.1).ceilToDouble(),
                                               lineBarsData: [
                                                 LineChartBarData(
                                                     colors: gradientColorsrecv,
@@ -974,13 +990,18 @@ class _HomePageState extends State<HomePage> {
                                                                     .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: ((maxYr * 1.1) -
-                                                              (minYr / 1.1)) ==
+                                                  interval: ((maxYr * 1.1)
+                                                                  .floorToDouble() -
+                                                              (minYr / 1.1)
+                                                                  .floorToDouble()) ==
                                                           0
                                                       ? double.infinity
-                                                      : ((maxYr * 1.1) -
-                                                              (minYr / 1.1)) /
-                                                          10,
+                                                      : (((maxYr * 1.1)
+                                                                      .floorToDouble() -
+                                                                  (minYr / 1.1)
+                                                                      .floorToDouble()) /
+                                                              10)
+                                                          .ceilToDouble(),
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
@@ -1051,9 +1072,11 @@ class _HomePageState extends State<HomePage> {
                                                               .withOpacity(0.2),
                                                       width: 0.2)),
                                               minX: 0,
-                                              minY: minYd / 1.1,
+                                              minY:
+                                                  (minYd / 1.1).floorToDouble(),
                                               maxX: 13,
-                                              maxY: (maxYd * 1.1),
+                                              maxY:
+                                                  (maxYd * 1.1).ceilToDouble(),
                                               lineBarsData: [
                                                 LineChartBarData(
                                                     colors: gradientColorsdead,
@@ -1090,13 +1113,18 @@ class _HomePageState extends State<HomePage> {
                                                                     .black87,
                                                             fontSize: 10))),
                                                 leftTitles: SideTitles(
-                                                  interval: ((maxYd * 1.1) -
-                                                              (minYd / 1.1)) ==
+                                                  interval: ((maxYd * 1.1)
+                                                                  .floorToDouble() -
+                                                              (minYd / 1.1)
+                                                                  .floorToDouble()) ==
                                                           0
                                                       ? double.infinity
-                                                      : ((maxYd * 1.1) -
-                                                              (minYd / 1.1)) /
-                                                          10,
+                                                      : (((maxYd * 1.1)
+                                                                      .floorToDouble() -
+                                                                  (minYd / 1.1)
+                                                                      .floorToDouble()) /
+                                                              10)
+                                                          .ceilToDouble(),
                                                   reservedSize: 15,
                                                   showTitles: true,
                                                   getTitles: (value) {
