@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="09f4f68a-0e40-4938-9f9c-7677f628848a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../covid19_tracker/assets/2nd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../covid19_tracker/assets/3rd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../covid19_tracker/assets/4th.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../covid19_tracker/assets/example.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../covid19_tracker/assets/first.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5_API_24" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_XL_API_24" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -50,37 +53,25 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="22" key="#Custom_Plugin_Repositories" timestamp="1600342241563">
+    <state x="275" y="22" key="#Custom_Plugin_Repositories" timestamp="1602516203734">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="22" key="#Custom_Plugin_Repositories/0.0.1366.728@0.0.1366.728" timestamp="1600342241563" />
-    <state x="363" y="91" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600333180636">
+    <state x="275" y="22" key="#Custom_Plugin_Repositories/0.0.1366.728@0.0.1366.728" timestamp="1602516203734" />
+    <state x="363" y="91" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1602510934564">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="363" y="91" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1600333180636" />
-    <state width="1323" height="134" key="GridCell.Tab.0.bottom" timestamp="1593240399950">
+    <state x="363" y="91" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1602510934564" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1602512047350">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="134" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1593240399950" />
-    <state width="1323" height="134" key="GridCell.Tab.0.center" timestamp="1593240399950">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602512047350" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1602516227751">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="134" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1593240399950" />
-    <state width="1323" height="134" key="GridCell.Tab.0.left" timestamp="1593240399950">
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1602516227751" />
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1602516233280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="134" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1593240399950" />
-    <state width="1323" height="134" key="GridCell.Tab.0.right" timestamp="1593240399950">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="134" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1593240399950" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1600342334892">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600342334892" />
-    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1600341366990">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1600341366990" />
+    <state x="92" y="92" width="1182" height="544" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1602516233280" />
   </component>
 </project>
