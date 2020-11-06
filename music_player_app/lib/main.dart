@@ -1,6 +1,7 @@
 import 'dart:ui';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:music_player/music_player.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   double val1 = 10;
+  bool playing = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,26 +29,25 @@ class _MyAppState extends State<MyApp> {
             tabs: [
               Tab(
                 icon: Icon(
-                  Icons.home_outlined,
+                  FontAwesomeIcons.home,
                   color: Colors.black,
                 ),
               ),
               Tab(
                 icon: Icon(
-                  Icons.mic_outlined,
+                  FontAwesomeIcons.podcast,
                   color: Colors.black,
                 ),
               ),
               Tab(
                 icon: Icon(
-                  Icons.account_box_outlined,
+                  FontAwesomeIcons.user,
                   color: Colors.black,
                 ),
               )
             ],
           ),
           body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -59,13 +60,13 @@ class _MyAppState extends State<MyApp> {
                           alignment: Alignment.bottomCenter,
                           children: [
                             Container(
-                                height: 500,
+                                height: 600,
                                 decoration: new BoxDecoration(
-                                  color: Color(0xfff9c62e),
+                                  color: Color(0xffFE7A48),
                                 ),
                                 child: Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(11, 60, 11, 0),
+                                      const EdgeInsets.fromLTRB(11, 180, 11, 0),
                                   child: ListTile(
                                     title: Text(
                                       'Hi Smarajit',
@@ -84,20 +85,29 @@ class _MyAppState extends State<MyApp> {
                                     ),
                                   ),
                                 )),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 270),
+                              child: Image(
+                                image: NetworkImage(
+                                    'https://cdn-sharing.adobecc.com/id/urn:aaid:sc:US:3d98e63c-67e2-40ab-a820-37df3357f876;version=0?component_id=641380f7-e5a8-49f8-8085-1d74ce9da69e&api_key=CometServer1&access_token=1604721844_urn%3Aaaid%3Asc%3AUS%3A3d98e63c-67e2-40ab-a820-37df3357f876%3Bpublic_2e59db0e3239734f951781927606027f6f44b563'),
+                                height: 320,
+                                width: 700,
+                              ),
+                            ),
                             Container(
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(40),
-                                      topRight: Radius.circular(40))),
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30))),
                               height: 200,
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(30, 0, 30, 60),
+                              padding: const EdgeInsets.fromLTRB(15, 0, 15, 60),
                               child: Card(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(32)),
-                                  elevation: 30,
+                                  elevation: 5,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,
@@ -117,81 +127,197 @@ class _MyAppState extends State<MyApp> {
                                             16, 0, 16, 16),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Expanded(
-                                              child: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                                                radius: 60,
-                                              ),
+                                              child: Container(
+                                                  child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(11),
+                                                child: Image.network(
+                                                    'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg'),
+                                              )),
                                             ),
                                             Expanded(
                                               flex: 2,
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8),
-                                                child: Card(
-                                                  elevation: 20,
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              30)),
-                                                  child: Column(
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 10),
-                                                        child: ListTile(
-                                                          title:
-                                                              Text('Portals'),
-                                                          subtitle: Text(
-                                                              'Avengers: Endgame'),
-                                                        ),
+                                              child: Card(
+                                                elevation: 0,
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30)),
+                                                child: Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 16),
+                                                      child: ListTile(
+                                                        title: Text('Portals'),
+                                                        subtitle: Text(
+                                                            'Avengers: Endgame'),
                                                       ),
-                                                      Slider(
-                                                        min: 0,
-                                                        max: 100,
-                                                        value: val1,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            val1 = value;
-                                                          });
-                                                        },
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        3),
+                                                            child: Text(
+                                                              '0:00',
+                                                            ),
+                                                          ),
+                                                          SliderTheme(
+                                                            data: SliderThemeData(
+                                                                trackShape:
+                                                                    CustomTrackShape(),
+                                                                trackHeight: 10,
+                                                                activeTrackColor:
+                                                                    Color(
+                                                                        0xffFE7A48),
+                                                                thumbColor: Color(
+                                                                    0xffFE7A48),
+                                                                thumbShape:
+                                                                    RoundSliderThumbShape(
+                                                                        enabledThumbRadius:
+                                                                            5)),
+                                                            child: Expanded(
+                                                              child: Container(
+                                                                height: 10,
+                                                                child: Slider(
+                                                                  min: 0,
+                                                                  max: 100,
+                                                                  value: val1,
+                                                                  onChanged:
+                                                                      (value) {
+                                                                    setState(
+                                                                        () {
+                                                                      val1 =
+                                                                          value;
+                                                                    });
+                                                                  },
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        3),
+                                                            child: Text(
+                                                              '4:36',
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                      Card(
-                                                        elevation: 10,
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        30)),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            IconButton(
-                                                              icon: Icon(Icons
-                                                                  .skip_previous_rounded),
-                                                              onPressed: () {},
+                                                    ),
+                                                    Card(
+                                                      elevation: 0,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          30)),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          IconButton(
+                                                            icon: Icon(Icons
+                                                                .skip_previous_rounded),
+                                                            onPressed: () {},
+                                                          ),
+                                                          Visibility(
+                                                            visible: !playing,
+                                                            child:
+                                                                ElevatedButton(
+                                                              style: ElevatedButton
+                                                                  .styleFrom(
+                                                                      primary:
+                                                                          Colors
+                                                                              .white,
+                                                                      elevation:
+                                                                          10,
+                                                                      shape:
+                                                                          CircleBorder()),
+                                                              child: Icon(
+                                                                Icons.pause,
+                                                                color: Color(
+                                                                    0xffFE7A48),
+                                                              ),
+                                                              onPressed: () {
+                                                                MusicPlayer()
+                                                                    .pause();
+                                                                setState(() {
+                                                                  playing =
+                                                                      !playing;
+                                                                });
+                                                              },
                                                             ),
-                                                            IconButton(
-                                                              icon: Icon(Icons
-                                                                  .play_arrow_rounded),
-                                                              onPressed: () {},
+                                                          ),
+                                                          Visibility(
+                                                            visible: playing,
+                                                            child:
+                                                                ElevatedButton(
+                                                              style: ElevatedButton
+                                                                  .styleFrom(
+                                                                      primary:
+                                                                          Colors
+                                                                              .white,
+                                                                      elevation:
+                                                                          10,
+                                                                      shape:
+                                                                          CircleBorder()),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .play_arrow_rounded,
+                                                                color: Color(
+                                                                    0xffFE7A48),
+                                                              ),
+                                                              onPressed: () {
+                                                                MusicPlayer().play(MusicItem(
+                                                                    url:
+                                                                        'https://goo.gl/5RQjTQ',
+                                                                    trackName:
+                                                                        'Portals',
+                                                                    artistName:
+                                                                        'Alan Silvestri',
+                                                                    albumName:
+                                                                        'Avengers: Endgame',
+                                                                    duration:
+                                                                        null,
+                                                                    coverUrl:
+                                                                        'https://i.ytimg.com/vi/F_mhWxOjxp4/hq720.jpg?sqp=-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDUASnX2-DZbs3XoqwJQPDuRHSnXQ'));
+                                                                setState(() {
+                                                                  playing =
+                                                                      !playing;
+                                                                });
+                                                              },
                                                             ),
-                                                            IconButton(
-                                                              icon: Icon(Icons
-                                                                  .skip_next_rounded),
-                                                              onPressed: () {},
-                                                            )
-                                                          ],
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
+                                                          ),
+                                                          IconButton(
+                                                            icon: Icon(Icons
+                                                                .skip_next_rounded),
+                                                            onPressed: () {},
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
                                               ),
                                             )
@@ -227,12 +353,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Totally Fine'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('4:30'),
@@ -241,12 +370,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Arrival'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('1:50'),
@@ -255,12 +387,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('No Trust'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('3:09'),
@@ -269,12 +404,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Where Are They?'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('3:13'),
@@ -283,12 +421,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Becoming Whole Again'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('3:48'),
@@ -297,12 +438,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('I Figured It Out'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('4:30'),
@@ -311,12 +455,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Perfectly Not Confusing'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('4:30'),
@@ -325,12 +472,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('You Shouldn' 't Be Here'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('4:30'),
@@ -339,12 +489,15 @@ class _MyAppState extends State<MyApp> {
                         Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          elevation: 10,
+                          elevation: 1,
                           child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  'https://lh3.googleusercontent.com/proxy/ZS2gSVa24_0fmNXextfNTCczq51MbVEOIOzslvzDW8SXMtE_RtojqRVMeaenemlAtAxEVqgyL2F9m6NLP7g_YyW4RE2ffJboRsb0Vyye7NqOGskiJszj26QuWeXEL_J6MjusYSRoro9LFkldUPaXAmG_50uK22yn03jcHDk57Uc'),
-                            ),
+                            leading: Container(
+                                child: ClipRRect(
+                              borderRadius: BorderRadius.circular(11),
+                              child: Image.network(
+                                'https://images-na.ssl-images-amazon.com/images/I/51lvxZDKppL.jpg',
+                              ),
+                            )),
                             title: Text('Portals'),
                             subtitle: Text('Avengers: Endgame'),
                             trailing: Text('4:30'),
@@ -360,5 +513,22 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+}
+
+class CustomTrackShape extends RoundedRectSliderTrackShape {
+  Rect getPreferredRect({
+    @required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    @required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final double trackHeight = sliderTheme.trackHeight;
+    final double trackLeft = offset.dx;
+    final double trackTop =
+        offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final double trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
   }
 }
