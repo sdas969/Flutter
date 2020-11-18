@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "275763292726",
+    "firebase_url": "https://apple-e5d72.firebaseio.com",
+    "project_id": "apple-e5d72",
+    "storage_bucket": "apple-e5d72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275763292726:android:68b890a7da5633c9344697",
+        "android_client_info": {
+          "package_name": "com.example.location_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275763292726-u6h0028agqpkkuv9fb65phhbp1r9ghjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDorOyUW3ih37BxMPHtn2cTTfPpadVp-gY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275763292726-u6h0028agqpkkuv9fb65phhbp1r9ghjk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
