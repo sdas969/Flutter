@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
 
   void getLoc() async {
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.best);
     print(position);
     createRecord(position.toString());
   }
