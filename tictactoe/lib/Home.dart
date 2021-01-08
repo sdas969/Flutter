@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'AuthPage.dart';
+import 'Register.dart';
+import 'Login.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -28,10 +29,7 @@ class _HomeState extends State<Home> {
               color: Colors.redAccent,
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            AuthPage('Login', Colors.redAccent)));
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -45,11 +43,8 @@ class _HomeState extends State<Home> {
             MaterialButton(
               color: Colors.blueAccent,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            AuthPage('Register', Colors.blueAccent)));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Register()));
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
