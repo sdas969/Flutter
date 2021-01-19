@@ -16,8 +16,13 @@ dependencies:
   firebase_storage: ^7.0.0
   http: ^0.12.2
   google_fonts: ^1.1.1
+  url_launcher: ^5.7.10
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.8.0"
+  flutter_launcher_name: "^0.0.1"
+  flutter_native_splash: ^0.2.7
+
   flutter_test:
     sdk: flutter
   integration_test:
@@ -25,6 +30,21 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"  
+
+flutter_launcher_name:
+  name: "Cough Classifier"
+
+flutter_native_splash:
+  image: assets/icon.png
+  color: "212121"
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

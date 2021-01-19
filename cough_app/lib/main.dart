@@ -135,6 +135,10 @@ class _MyAppState extends State<MyApp> {
       ));
     } else {
       results.clear();
+      results.add(Text(
+        'Results',
+        style: TextStyle(fontSize: 47),
+      ));
       results.add(ListTile(
         leading: Text(
           'Type',
@@ -158,7 +162,6 @@ class _MyAppState extends State<MyApp> {
             Text((arr[i]['wetPrediction'] * 100).toString().substring(0, 5)),
       ));
     }
-    print(temp['result']);
     setState(() {});
   }
 
@@ -233,13 +236,20 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
       floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return Info();
           }));
         },
-        child: Icon(Icons.info_rounded),
+        child: Icon(
+          Icons.info_rounded,
+          color: Colors.white,
+          size: 29,
+        ),
       ),
       body: SafeArea(
         child: ListView(
@@ -253,72 +263,84 @@ class _MyAppState extends State<MyApp> {
             SizedBox(
               height: 60,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Stack(
+              alignment: AlignmentDirectional.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 11),
-                  child: Hero(
-                    tag: 'rec',
-                    child: MaterialButton(
-                      elevation: 20,
-                      disabledElevation: 10,
-                      color: Colors.blueAccent,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100)),
-                      child: _mRecorder.isRecording
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              child: Icon(
-                                Icons.stop,
-                                size: 50,
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              child: Icon(
-                                Icons.mic,
-                                size: 50,
-                              ),
-                            ),
-                      onPressed: getRecorderFn(),
-                      disabledColor: Colors.blueAccent.shade100,
-                    ),
+                Hero(
+                  tag: 'div',
+                  child: Divider(
+                    color: Colors.grey,
+                    thickness: 2,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 11),
-                  child: Hero(
-                    tag: 'play',
-                    child: MaterialButton(
-                      color: Colors.pinkAccent,
-                      elevation: 20,
-                      disabledElevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(100)),
-                      child: _mPlayer.isPlaying
-                          ? Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              child: Icon(
-                                Icons.stop,
-                                size: 50,
-                              ),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              child: Icon(
-                                Icons.play_arrow,
-                                size: 50,
-                              ),
-                            ),
-                      onPressed: getPlaybackFn(),
-                      disabledColor: Colors.pinkAccent.shade100,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 11),
+                      child: Hero(
+                        tag: 'rec',
+                        child: MaterialButton(
+                          elevation: 20,
+                          disabledElevation: 10,
+                          color: Colors.blueAccent,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          child: _mRecorder.isRecording
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  child: Icon(
+                                    Icons.stop,
+                                    size: 50,
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  child: Icon(
+                                    Icons.mic,
+                                    size: 50,
+                                  ),
+                                ),
+                          onPressed: getRecorderFn(),
+                          disabledColor: Colors.blueAccent.shade100,
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 11),
+                      child: Hero(
+                        tag: 'play',
+                        child: MaterialButton(
+                          color: Colors.pinkAccent,
+                          elevation: 20,
+                          disabledElevation: 10,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          child: _mPlayer.isPlaying
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  child: Icon(
+                                    Icons.stop,
+                                    size: 50,
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  child: Icon(
+                                    Icons.play_arrow,
+                                    size: 50,
+                                  ),
+                                ),
+                          onPressed: getPlaybackFn(),
+                          disabledColor: Colors.pinkAccent.shade100,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -341,9 +363,13 @@ class _MyAppState extends State<MyApp> {
             ),
             Visibility(
               visible: welcomeVisibility,
-              child: Text(
-                welcome,
-                style: TextStyle(fontSize: 30),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 47),
+                child: Text(
+                  welcome,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             )
           ],

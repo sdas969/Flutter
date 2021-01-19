@@ -8,8 +8,8 @@
 
 
    <application
-        android:label="cough_app"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Cough Classifier"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
