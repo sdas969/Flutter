@@ -9,6 +9,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:http/http.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 typedef _Fn = void Function();
 
@@ -16,7 +17,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
-    theme: ThemeData.dark(),
+    theme: ThemeData.dark().copyWith(
+        textTheme:
+            TextTheme().apply(fontFamily: GoogleFonts.lato().fontFamily)),
     home: MyApp(),
   ));
 }
@@ -38,6 +41,8 @@ class _MyAppState extends State<MyApp> {
   FirebaseStorage storage = FirebaseStorage.instance;
   List<Widget> results = [];
   bool progressVisibility = false;
+  String welcome = 'Press the Record button to start with';
+  bool welcomeVisibility = true;
 
   @override
   void initState() {
@@ -164,6 +169,7 @@ class _MyAppState extends State<MyApp> {
       codec: Codec.aacADTS,
     );
     results.clear();
+    welcomeVisibility = false;
     setState(() {});
   }
 
@@ -171,6 +177,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       progressVisibility = true;
       results.clear();
+      welcomeVisibility = false;
     });
     await _mRecorder.stopRecorder();
     _mplaybackReady = true;
@@ -332,6 +339,13 @@ class _MyAppState extends State<MyApp> {
             Column(
               children: results,
             ),
+            Visibility(
+              visible: welcomeVisibility,
+              child: Text(
+                welcome,
+                style: TextStyle(fontSize: 30),
+              ),
+            )
           ],
         ),
       ),

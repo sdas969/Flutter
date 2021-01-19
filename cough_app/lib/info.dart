@@ -76,6 +76,10 @@ class _InfoState extends State<Info> {
             SizedBox(
               height: 56,
             ),
+            Text(
+              'This app breaks down cough events in the audio track recorded within the app and classifies it in to wet or dry cough. All this is possible due to the free-to-use Cough API (link given above). The API uses an AI model in order to classify the events',
+              style: TextStyle(fontSize: 20),
+            )
           ],
         ),
       ),
