@@ -12,6 +12,7 @@ class _UserState extends State<User> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red.shade800,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -23,11 +24,15 @@ class _UserState extends State<User> {
               padding: const EdgeInsets.only(bottom: 20),
               child: Center(
                   child: Text(
-                'Blood Friends',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+                'Blood Share',
+                style: TextStyle(
+                    fontSize: 90,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
               )),
             ),
             MaterialButton(
+              elevation: 50,
               color: Colors.blueAccent,
               shape: RoundedRectangleBorder(
                   borderRadius:
@@ -41,14 +46,12 @@ class _UserState extends State<User> {
               },
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Hero(
-                  tag: 'button1',
-                  child: Text('Register',
-                      style: TextStyle(fontSize: 20, color: Colors.white)),
-                ),
+                child: Text('Register',
+                    style: TextStyle(fontSize: 20, color: Colors.white)),
               ),
             ),
             MaterialButton(
+              elevation: 50,
               color: Colors.redAccent,
               shape: RoundedRectangleBorder(
                   borderRadius:
@@ -62,12 +65,9 @@ class _UserState extends State<User> {
               },
               child: Padding(
                 padding: const EdgeInsets.all(20),
-                child: Hero(
-                  tag: 'button2',
-                  child: Text(
-                    'Login',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
+                child: Text(
+                  'Login',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
             )

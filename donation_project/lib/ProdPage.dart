@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'Noti.dart';
 
 class ProdPage extends StatefulWidget {
   final String userName;
@@ -13,78 +14,125 @@ class _ProdPageState extends State<ProdPage> {
   final databaseReference = FirebaseFirestore.instance;
   List<Widget> items = [];
   List<bool> itemShow = [];
-  void getTile() {
-    items.add(Text(
-      widget.userType == 'patient' ? 'Donors list' : 'Patients List',
-      style: TextStyle(fontSize: 20),
+  void getTile() async {
+    List<Widget> items1 = [];
+    items1.add(Padding(
+      padding: const EdgeInsets.all(20),
+      child: Center(
+        child: Text(
+          widget.userType == 'patient' ? 'Donors' : 'Patients',
+          style: TextStyle(
+              fontSize: 50, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
     ));
-    databaseReference
+
+    await databaseReference
         .collection(widget.userType == 'patient' ? 'donor' : 'patient')
         .get()
         .then((item) {
       item.docs.forEach((element) {
-        items.add(Card(
-          elevation: 20,
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      element.data()['Full name'],
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+        items1.add(Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Card(
+            color: Colors.redAccent,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            elevation: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: CircleAvatar(
+                        radius: 100,
+                        backgroundImage:
+                            NetworkImage(element.data()['imageurl']),
+                      )),
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              element.data()['Full name'],
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              element.data()['Diseases'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              element.data()['Address'],
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MaterialButton(
+                              elevation: 20,
+                              color: Colors.blueAccent.shade700,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              onPressed: () {
+                                setState(() {});
+                              },
+                              child: Text(
+                                'Show Interest',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(element.data()['Diseases']),
-                  ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(element.data()['Address']),
-                  ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: MaterialButton(
-                      onPressed: () {
-                        setState(() {});
-                      },
-                      child: Text('Show Interest'),
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ));
-        setState(() {});
       });
+    });
+    setState(() {
+      items = items1;
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    setState(() {
-      getTile();
-    });
+    getTile();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.red.shade800,
         appBar: AppBar(
+          backgroundColor: Colors.redAccent,
+          elevation: 11,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
           title: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,14 +145,20 @@ class _ProdPageState extends State<ProdPage> {
             ],
           ),
           actions: [
+            IconButton(
+                icon: Icon(Icons.notifications),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Noti()));
+                }),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(child: Text(widget.userType.toUpperCase())),
             )
           ],
         ),
-        body: Column(
-          children: items,
+        body: ListView(
+          children: items.length == 0 ? [LinearProgressIndicator()] : items,
         ));
   }
 }
