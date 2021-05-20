@@ -98,9 +98,10 @@ class _ExploreScreenState extends State<ExploreScreen>
                 ))
             .toList(),
         columnMainAxisAlignment: MainAxisAlignment.center,
-        showSkipButton: false,
+        showSkipButton: true,
         showNextButton: false,
         pageButtonTextSize: 20,
+        skipText: Text('SKIP'),
         pageButtonsColor: Colors.white,
         doneText: Text('Get Started'),
         onTapDoneButton: () {

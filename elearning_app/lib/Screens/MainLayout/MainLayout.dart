@@ -1,3 +1,4 @@
+import 'package:elearning_app/Screens/DiscussScreen/DiscussScreen.dart';
 import 'package:elearning_app/Screens/HomeScreen/home_screen_body.dart';
 import 'package:elearning_app/Screens/MainLayout/DrawerElements.dart';
 import 'package:elearning_app/Screens/MainLayout/MainLayoutConstants.dart';
@@ -20,9 +21,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> widgetOptions = <Widget>[
     HomeScreenBody(),
-    Center(
-      child: Text('Discuss'),
-    ),
+    DiscussScreen(),
     Center(
       child: Text('Study Zone'),
     ),

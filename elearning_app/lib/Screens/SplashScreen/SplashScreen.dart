@@ -22,7 +22,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     controller.dispose();
     super.dispose();
   }
@@ -35,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   startTime() async {
-    var duration = new Duration(seconds: 11);
+    var duration = new Duration(seconds: 3);
     return new Timer(duration, route);
   }
 

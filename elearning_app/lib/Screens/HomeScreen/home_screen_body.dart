@@ -1,6 +1,4 @@
 import 'package:elearning_app/Screens/HomeScreen/KnowMoreButton.dart';
-import 'package:elearning_app/Screens/HomeScreen/SearchScreen.dart';
-import 'package:elearning_app/Screens/HomeScreen/category_screen.dart';
 import 'ForYouCard.dart';
 import 'package:elearning_app/utils/const.dart';
 import 'package:elearning_app/widgets/card_courses.dart';
