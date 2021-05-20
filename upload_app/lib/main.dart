@@ -126,9 +126,7 @@ class _MyAppState extends State<MyApp> {
                 child: Column(
                   children: [
                     ClipRect(
-                      child: _image != null
-                          ? (kIsWeb ? Image.network(temp) : Image.file(_image))
-                          : null,
+                      child: _image != null ? Image.file(_image) : null,
                     ),
                     TextField(
                       controller: caption,

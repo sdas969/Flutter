@@ -1,10 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.upload_app">
-    <uses-permission android:name="android.permission.INTERNET" />
+    package="com.example.elearning_app">
    <application
-        android:label="upload_app"
-        android:icon="@mipmap/ic_launcher"
-        android:requestLegacyExternalStorage="true">
+        android:label="elearning_app"
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
