@@ -1,4 +1,3 @@
-import 'package:elearning_app/Screens/HomeScreen/category_screen.dart';
 import 'package:elearning_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
@@ -31,12 +30,7 @@ class KnowMoreButton extends StatelessWidget {
         shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(13.0),
         ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CategoryScreen()),
-          );
-        },
+        onPressed: () {},
       ),
     );
   }

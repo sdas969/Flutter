@@ -18,6 +18,9 @@ class HomeScreenBody extends StatefulWidget {
 class _HomeScreenBodyState extends State<HomeScreenBody> {
   final TextEditingController _searchControl = new TextEditingController();
   late FocusNode myFocusNode;
+  RoundedRectangleBorder sliverAppBarShape = RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)));
 
   @override
   void initState() {
@@ -39,20 +42,18 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         extendBodyBehindAppBar: true,
         body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            IconButton menuButton = IconButton(
+                onPressed: () {
+                  widget.controller.toggleDrawer();
+                },
+                icon: Icon(Icons.menu));
             return <Widget>[
               SliverAppBar(
                 elevation: 20,
                 forceElevated: true,
                 backgroundColor: Constants.salmonMain,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20))),
-                leading: IconButton(
-                    onPressed: () {
-                      widget.controller.toggleDrawer();
-                    },
-                    icon: Icon(Icons.menu)),
+                shape: sliverAppBarShape,
+                leading: menuButton,
                 expandedHeight: MediaQuery.of(context).size.height * 0.5,
                 floating: false,
                 pinned: true,
@@ -158,17 +159,19 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
           body: ListView(
             padding: EdgeInsets.all(11),
             children: [
-              LiftYourCareer(),
-              SizedBox(height: 20.0),
-              Text("For You",
+              LiftYourCareer(), //Lift You Career Card
+              SizedBox(height: 20.0), //Gap
+              Text("For You", //For you section start
                   style: TextStyle(
                     color: Constants.textDark,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   )),
-              SizedBox(height: 20.0),
-              ForYouSection(),
-              SizedBox(height: 20.0),
+              SizedBox(height: 20.0), //Gap
+              ForYouSection(), //For you section cards display
+              SizedBox(height: 20.0), //Gap
+              //For you section ends
+              //Cards diplay starts
               CardCourses(
                 onPressed: () {},
                 image: Image.asset("assets/exam.png", width: 40, height: 40),
@@ -230,177 +233,5 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         )
         // MainBody(myFocusNode: myFocusNode, searchControl: _searchControl),
         );
-  }
-}
-
-class MainBody extends StatelessWidget {
-  const MainBody({
-    Key? key,
-    required this.myFocusNode,
-    required TextEditingController searchControl,
-  })  : _searchControl = searchControl,
-        super(key: key);
-
-  final FocusNode myFocusNode;
-  final TextEditingController _searchControl;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Header(),
-        Padding(
-          padding: EdgeInsets.all(Constants.mainPadding),
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: <Widget>[
-              SizedBox(height: Constants.mainPadding * 2),
-              Text(
-                "Welcome\nSmarajit!",
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white),
-              ),
-              SizedBox(height: Constants.mainPadding),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20.0),
-                  ),
-                ),
-                child: TextField(
-                  onTap: () {},
-                  focusNode: myFocusNode,
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    color: Constants.textDark,
-                  ),
-                  keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    hintText: "Search exams",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: Constants.textDark,
-                      ),
-                      onPressed: () {
-                        debugPrint("Search pressed");
-                      },
-                    ),
-                    hintStyle: TextStyle(
-                      fontSize: 15.0,
-                    ),
-                  ),
-                  maxLines: 1,
-                  controller: _searchControl,
-                ),
-              ),
-
-              SizedBox(height: Constants.mainPadding),
-
-              // 3. Start Learning Button Section
-              LiftYourCareer(),
-              SizedBox(height: 20.0),
-              Text("For You",
-                  style: TextStyle(
-                    color: Constants.textDark,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  )),
-              SizedBox(height: 20.0),
-              ForYouSection(),
-              SizedBox(height: 20.0),
-
-              Text("Explore More",
-                  style: TextStyle(
-                    color: Constants.textDark,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  )),
-
-              SizedBox(height: 20.0),
-
-              // List of courses
-              ListView(
-                scrollDirection: Axis.vertical,
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                children: <Widget>[
-                  CardCourses(
-                    onPressed: () {},
-                    image:
-                        Image.asset("assets/exam.png", width: 40, height: 40),
-                    color: Constants.lightPink,
-                    title: "Exams",
-                    hours: "Revise, Organise, Practice",
-                  ),
-                  CardCourses(
-                    onPressed: () {},
-                    image: Image.asset("assets/currentaffairs.png",
-                        width: 40, height: 40),
-                    color: Constants.lightYellow,
-                    title: "Current Affairs",
-                    hours: "All in one place, here",
-                  ),
-                  CardCourses(
-                    image: Image.asset("assets/knowledgezone.png",
-                        width: 40, height: 40),
-                    color: Colors.teal[100]!,
-                    onPressed: () {},
-                    title: "Knowledge Zone",
-                    hours: "What you know is just a drop in an ocean",
-                  ),
-                  CardCourses(
-                    onPressed: () {},
-                    image:
-                        Image.asset("assets/quiz.png", width: 40, height: 40),
-                    color: Colors.lightBlue[100]!,
-                    title: "Quiz",
-                    hours: "Practice!, Practice! and Practice!",
-                  ),
-                  CardCourses(
-                    onPressed: () {},
-                    image: Image.asset("assets/fulllengthtest.png",
-                        width: 40, height: 40),
-                    color: Colors.red[100]!,
-                    title: "Full Length Test",
-                    hours: "Consistency is the Key",
-                  ),
-                  CardCourses(
-                    onPressed: () {},
-                    image: Image.asset("assets/institute.png",
-                        width: 40, height: 40),
-                    color: Constants.lightViolet,
-                    title: "Institute Batch Management",
-                    hours: "Manage your Institute Batches",
-                  ),
-                  CardCourses(
-                    onPressed: () {
-                      print('Hello');
-                    },
-                    image: Image.asset("assets/notification.png",
-                        width: 40, height: 40),
-                    color: Colors.cyan[100]!,
-                    title: "Institute Notification",
-                    hours: "Latest upadates across Institutes",
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
   }
 }

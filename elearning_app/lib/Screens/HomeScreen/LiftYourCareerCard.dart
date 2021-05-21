@@ -3,9 +3,13 @@ import 'package:elearning_app/utils/const.dart';
 import 'package:flutter/material.dart';
 
 class LiftYourCareer extends StatelessWidget {
-  const LiftYourCareer({
+  LiftYourCareer({
     Key? key,
   }) : super(key: key);
+  BoxDecoration _boxDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(30.0),
+    color: Color(0xFFFEF3F3),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +18,12 @@ class LiftYourCareer extends StatelessWidget {
         Container(
           width: double.infinity,
           padding: EdgeInsets.all(30.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30.0),
-            color: Color(0xFFFEF3F3),
-          ),
+          decoration: _boxDecoration,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              //Text Section
               Text(
                 "Lift Your Career \nWith Us!",
                 style: TextStyle(
@@ -30,7 +32,7 @@ class LiftYourCareer extends StatelessWidget {
                     color: Constants.textDark),
               ),
               SizedBox(height: 10.0),
-              KnowMoreButton()
+              KnowMoreButton() //Know More Button
             ],
           ),
         ),
