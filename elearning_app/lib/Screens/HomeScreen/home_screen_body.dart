@@ -1,8 +1,6 @@
 import 'package:elearning_app/Screens/HomeScreen/ForYouSection.dart';
-import 'package:elearning_app/Screens/HomeScreen/KnowMoreButton.dart';
 import 'package:elearning_app/Screens/HomeScreen/LiftYourCareerCard.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'ForYouCard.dart';
 import 'package:elearning_app/utils/const.dart';
 import 'package:elearning_app/widgets/card_courses.dart';
 import 'package:elearning_app/widgets/header.dart';

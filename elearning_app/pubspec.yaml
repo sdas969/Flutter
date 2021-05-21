@@ -17,8 +17,6 @@ dependencies:
   google_nav_bar: ^5.0.5
   percent_indicator: ^3.0.1
   flutter_advanced_drawer: ^1.1.0
-  accordion: ^1.0.4
-  expandable: ^5.0.1
 
 dev_dependencies:
   flutter_test:

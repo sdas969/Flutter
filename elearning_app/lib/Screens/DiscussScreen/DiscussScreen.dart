@@ -1,9 +1,5 @@
-import 'package:accordion/accordion.dart';
-import 'package:elearning_app/Screens/MainLayout/MainLayoutConstants.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DiscussScreen extends StatefulWidget {
   AdvancedDrawerController controller;
