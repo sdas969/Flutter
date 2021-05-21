@@ -20,8 +20,8 @@ class _MainLayoutState extends State<MainLayout> {
   }
 
   final List<Widget> widgetOptions = <Widget>[
-    HomeScreenBody(),
-    DiscussScreen(),
+    HomeScreenBody(controller: advancedDrawerController),
+    DiscussScreen(controller: advancedDrawerController),
     Center(
       child: Text('Study Zone'),
     ),
@@ -32,25 +32,6 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    PreferredSize _appBar = PreferredSize(
-      preferredSize: Size(double.infinity, 100),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(11),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    advancedDrawerController.toggleDrawer();
-                  },
-                  icon: Icon(Icons.menu, color: Colors.white)),
-            ],
-          ),
-        ),
-      ),
-    );
-
     Container _bottomNavBar = Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -98,7 +79,6 @@ class _MainLayoutState extends State<MainLayout> {
       childDecoration: boxDecoration,
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: _appBar,
         backgroundColor: Colors.white,
         body: Center(
           child: widgetOptions.elementAt(_selectedIndex),
