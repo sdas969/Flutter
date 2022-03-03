@@ -1,0 +1,48 @@
+name: covid19_tracker
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  shared_preferences: ^2.0.6
+  fluttericon: ^2.0.0
+  url_launcher: ^6.0.9
+  google_fonts: ^2.1.0
+  fl_chart: ^0.11.1
+  http: ^0.13.3
+<<<<<<< HEAD
+=======
+  modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+>>>>>>> 4f3af15 (Update)
+  pull_to_refresh: ^2.0.0
+  splashscreen: ^1.2.0
+  responsive_grid: ^2.0.0
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Corona.png"  
+
+flutter_launcher_name:
+  name: "Corona Tracker"
+
+flutter_native_splash:
+  image: assets/Corona.png
+  color: "212121"
+
+

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "280630637440",
+    "firebase_url": "https://apple1234-c952a.firebaseio.com",
+    "project_id": "apple1234-c952a",
+    "storage_bucket": "apple1234-c952a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280630637440:android:98bd3af349d181fd3fc765",
+        "android_client_info": {
+          "package_name": "com.example.apple_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "280630637440-lerrspim9a8cq39tqer3vj908i6d3k07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD3UzzdA-jhjQdpYrukjKNdBW6otjirys"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "280630637440-lerrspim9a8cq39tqer3vj908i6d3k07.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
