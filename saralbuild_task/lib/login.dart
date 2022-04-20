@@ -25,11 +25,13 @@ class Login extends StatelessWidget {
                 ),
                 TextField(
                   controller: _userNameController,
+                  decoration: const InputDecoration(hintText: 'Username'),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextField(
+                  decoration: const InputDecoration(hintText: 'Password'),
                   controller: _passwordController,
                   obscureText: true,
                 ),
