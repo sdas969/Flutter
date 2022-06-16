@@ -1,7 +1,8 @@
-import 'package:tezsure_task/home_screen.dart';
+import 'package:tezsure_task/ui/home_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class TezSureStore extends VxStore {
+  int index = 0;
   List<Token> tokenList = [
     const Token(
         codename: 'Doga',
@@ -22,28 +23,21 @@ class TezSureStore extends VxStore {
         shares: 0.0164,
         value: 1.21)
   ];
-  int index = 0;
 }
 
 class SortL2H extends VxMutation<TezSureStore> {
   @override
-  perform() {
-    store!.tokenList.sort((a, b) => a.value.compareTo(b.value));
-  }
+  perform() => store!.tokenList.sort((a, b) => a.value.compareTo(b.value));
 }
 
 class SortH2L extends VxMutation<TezSureStore> {
   @override
-  perform() {
-    store!.tokenList.sort((a, b) => b.value.compareTo(a.value));
-  }
+  perform() => store!.tokenList.sort((a, b) => b.value.compareTo(a.value));
 }
 
 class ChangeIndex extends VxMutation<TezSureStore> {
   ChangeIndex({required this.index});
   final int index;
   @override
-  perform() {
-    store!.index = index;
-  }
+  perform() => store!.index = index;
 }

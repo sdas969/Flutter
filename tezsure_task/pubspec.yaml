@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts:
   velocity_x:
-  swipeable_card_stack:
 
 dev_dependencies:
   flutter_test:

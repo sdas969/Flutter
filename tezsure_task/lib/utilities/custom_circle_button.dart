@@ -12,24 +12,13 @@ class CustomCircleButton extends StatelessWidget {
   final Function() onPressed;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context) => Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          CircleAvatar(
+      child: Column(children: [
+        CircleAvatar(
             backgroundColor: Colors.white,
-            child: IconButton(onPressed: onPressed, icon: Icon(iconData)),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            label,
-            style: const TextStyle(fontWeight: FontWeight.w700),
-          )
-        ],
-      ),
-    );
-  }
+            child: IconButton(onPressed: onPressed, icon: Icon(iconData))),
+        const SizedBox(height: 10),
+        Text(label, style: const TextStyle(fontWeight: FontWeight.w700))
+      ]));
 }
