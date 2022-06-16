@@ -19,6 +19,7 @@ class OverviewCard extends StatelessWidget {
               shadowColor: secondaryColor,
               elevation: 10,
               shape: RoundedRectangleBorder(
+                  side: BorderSide(color: primaryColor, width: 0.8),
                   borderRadius: BorderRadius.circular(20)),
               child: Padding(
                   padding: const EdgeInsets.all(20),

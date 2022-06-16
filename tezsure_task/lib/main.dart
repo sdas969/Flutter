@@ -11,5 +11,5 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-      theme: appThemeData, home: const HomeScreen(), title: 'TezSure');
+      theme: appThemeData, home: const HomeScreen(), title: appTitle);
 }

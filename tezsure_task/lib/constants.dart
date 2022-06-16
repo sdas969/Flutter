@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+String appTitle = 'TezSure';
+
 ThemeData appThemeData = ThemeData.dark().copyWith(
     textTheme: GoogleFonts.poppinsTextTheme()
         .apply(bodyColor: primaryColor, displayColor: primaryColor));

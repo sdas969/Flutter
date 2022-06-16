@@ -6,9 +6,9 @@ class TransferIcon extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [Icon(Icons.arrow_upward), Icon(Icons.arrow_downward)]);
-  }
+  Widget build(BuildContext context) => const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4),
+        child: Image(
+            fit: BoxFit.cover, image: AssetImage('assets/icons/data.png')),
+      );
 }

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tezsure_task">
    <application
-        android:label="tezsure_task"
+        android:label="TezSure"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

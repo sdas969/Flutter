@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tezsure_task/ui/all_token_heading.dart';
 import 'package:tezsure_task/constants.dart';
 import 'package:tezsure_task/store/tezsure_store.dart';
 import 'package:tezsure_task/ui/overview_card.dart';
 import 'package:tezsure_task/ui/token_list.dart';
+import 'package:tezsure_task/utilities/custom_header.dart';
 import 'package:tezsure_task/utilities/transfer_icon.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _scrollController = ScrollController();
     store = VxState.store as TezSureStore;
+    SortL2H();
     super.initState();
   }
 
@@ -59,45 +60,48 @@ class _HomeScreenState extends State<HomeScreen> {
   handleTabChange(index) => setState(() => _index = index);
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-      child: Scaffold(
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: FloatingActionButton(
-              backgroundColor: buttonColor,
-              child: const TransferIcon(),
-              onPressed: () {}),
-          bottomNavigationBar: BottomNavigationBar(
-              currentIndex: _index,
-              unselectedItemColor: Colors.white,
-              selectedItemColor: buttonColor,
-              showUnselectedLabels: true,
-              type: BottomNavigationBarType.fixed,
-              onTap: handleTabChange,
-              items: bottomIconList),
-          backgroundColor: backgroundColor,
-          body: CustomScrollView(controller: _scrollController, slivers: [
-            const SliverAppBar(
-                expandedHeight: 250.0,
-                flexibleSpace: FlexibleSpaceBar(background: OverviewCard())),
-            SliverToBoxAdapter(
-                child: Container(
-                    color: secondaryBackgroundColor,
-                    child: Visibility(
-                        visible: visible,
-                        child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Stack(
-                                children: imageList
-                                    .map((image) => Dismissible(
-                                        key: Key('$image'),
-                                        onDismissed: handleDismissed,
-                                        child: image))
-                                    .toList()))))),
-            SliverFillRemaining(
-                child: Column(children: [
-              const AllTokenHeading(),
-              TokenList(scrollController: _scrollController, store: store)
-            ]))
-          ])));
+  Widget build(BuildContext context) {
+    SliverToBoxAdapter cardStack = SliverToBoxAdapter(
+        child: Visibility(
+            visible: visible,
+            child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: imageList
+                        .mapIndexed((image, index) => Dismissible(
+                              key: Key('$image'),
+                              onDismissed: handleDismissed,
+                              child: image,
+                            ))
+                        .toList()))));
+
+    BottomNavigationBar bottomNavBar = BottomNavigationBar(
+        currentIndex: _index,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: buttonColor,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+        onTap: handleTabChange,
+        items: bottomIconList);
+
+    return SafeArea(
+        child: Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+                backgroundColor: buttonColor,
+                child: const TransferIcon(),
+                onPressed: () {}),
+            bottomNavigationBar: bottomNavBar,
+            backgroundColor: backgroundColor,
+            body: CustomScrollView(controller: _scrollController, slivers: [
+              const SliverAppBar(
+                  expandedHeight: 250.0,
+                  flexibleSpace: FlexibleSpaceBar(background: OverviewCard())),
+              cardStack,
+              SliverPersistentHeader(delegate: CustomHeader(), pinned: true),
+              TokenList(store: store)
+            ])));
+  }
 }

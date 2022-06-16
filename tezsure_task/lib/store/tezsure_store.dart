@@ -5,6 +5,12 @@ class TezSureStore extends VxStore {
   int index = 0;
   List<Token> tokenList = [
     const Token(
+        codename: 'Gif',
+        imagePath: 'assets/tokens/gif.png',
+        name: 'GIF',
+        shares: 0.0164,
+        value: 1.21),
+    const Token(
         codename: 'Doga',
         imagePath: 'assets/tokens/dogami.png',
         name: 'Dogami',
@@ -15,13 +21,7 @@ class TezSureStore extends VxStore {
         imagePath: 'assets/tokens/tezos.png',
         name: 'Tezos',
         shares: 64,
-        value: 255.21),
-    const Token(
-        codename: 'Gif',
-        imagePath: 'assets/tokens/gif.png',
-        name: 'GIF',
-        shares: 0.0164,
-        value: 1.21)
+        value: 255.21)
   ];
 }
 
