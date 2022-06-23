@@ -12,6 +12,7 @@ Color backgroundColor = Colors.black;
 Color secondaryBackgroundColor = const Color(0xff252525);
 Color secondaryColor = Colors.black;
 Color primaryColor = Colors.white;
+Color cardBorderColor = const Color(0xffB8B8B8);
 
 AssetImage profileImage = const AssetImage('assets/profile/profile.png');
 

@@ -51,9 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   handleDismissed(index) {
     imageList.removeLast();
     if (imageList.isEmpty) {
-      setState(() {
-        visible = false;
-      });
+      setState(() => visible = false);
     }
   }
 
@@ -72,7 +70,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         .mapIndexed((image, index) => Dismissible(
                               key: Key('$image'),
                               onDismissed: handleDismissed,
-                              child: image,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border:
+                                          Border.all(color: cardBorderColor)),
+                                  margin: EdgeInsets.only(
+                                      right: (imageList.length - index) * 10.0,
+                                      top: (imageList.length - index) * 10.0,
+                                      bottom: (index) * 10.0,
+                                      left: (index) * 10.0),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: image)),
                             ))
                         .toList()))));
 
